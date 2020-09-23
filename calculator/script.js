@@ -62,16 +62,23 @@ class Calculator {
     }
 
     getSquareRoot() {
-        console.log('current', this.currentOperand, 'prev', this.previousOperand)
         if (this.currentOperand === '') return;
         if (this.previousOperand !== '') {
             this.compute();
         }
         const num = parseFloat(this.currentOperand);
         const result = Math.sqrt(num);
+        if (isNaN(result)) {
+            alert('It is impossible to find the square root of negative number!');
+        }
         this.readyToReset = true;
         this.currentOperand = result;
         this.previousOperand = '';
+    }
+
+    makeNegative() {
+        if (this.currentOperand === '') return;
+        this.currentOperand *= -1;
     }
 
     getDisplayNumber(number) {
@@ -108,6 +115,7 @@ class Calculator {
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const squareRootButton = document.querySelector('[data-square-root]');
+const plusMinusButton = document.querySelector('[data-plus-minus]');
 const equalsButton = document.querySelector('[data-equals]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const deleteButton = document.querySelector('[data-delete]');
@@ -138,6 +146,11 @@ operationButtons.forEach(button => {
 
 squareRootButton.addEventListener('click', () => {
     calculator.getSquareRoot();
+    calculator.updateDisplay();
+})
+
+plusMinusButton.addEventListener('click', () => {
+    calculator.makeNegative();
     calculator.updateDisplay();
 })
 
