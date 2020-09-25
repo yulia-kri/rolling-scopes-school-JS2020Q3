@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-light-s: #FAFAFA;
+    --color-light-l: #F6F6F6;
+    --color-light-xl: #FFFFFF;
+    --color-dark-s: #CDCDCD;
+    --color-dark-m: #B2B2B2;
+    --color-dark-l: #545454;
+    --color-dark-xl: #4C4C4C;
+    --color-dark-2xl: #444444;
+    --color-dark-3xl: #292929;
+    --color-primary: #F1CDB3;
+    --color-primary-light: #FDDCC4;
+    --start-screen-gradient-background: url(assets/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+    --footer-gradient-background: url(assets/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+body {
+    width: 100vw;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.main-container {
+    width: 62.5%;
+    min-width: 1200px;
+}
+
+.start-page {
+    height: 908px;
+    background: var(--start-screen-gradient-background);
+}
+
+.about-page {
+    height: 588px;
+    background: var(--color-light-xl);
+}
+
+.our-pets-page {
+    height: 877px;
+    background: var(--color-light-l);
+}
+
+.help-page {
+    height: 611px;
+    background: var(--color-light-xl);
+}
+
+.donation-page {
+    height: 464px;
+    background: var(--color-light-l);
+}
+
+.footer {
+    height: 355px;
+    background: var(--footer-gradient-background);
+}
