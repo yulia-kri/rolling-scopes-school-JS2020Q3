@@ -27,32 +27,33 @@
     margin: 0 auto;
 }
 
-.page-container {
+.page,
+.footer {
     display: flex;
     justify-content: center;
 }
 
-.start-page {
+.start.page {
     height: 908px;
     background: var(--start-screen-gradient-background);
 }
 
-.about-page {
+.about.page {
     height: 588px;
     background: var(--color-light-xl);
 }
 
-.our-pets-page {
+.our-pets.page {
     height: 877px;
     background: var(--color-light-l);
 }
 
-.help-page {
+.help.page {
     height: 611px;
     background: var(--color-light-xl);
 }
 
-.donation-page {
+.donation.page {
     height: 464px;
     background: var(--color-light-l);
 }
@@ -218,14 +219,27 @@ button:hover {
     background: var(--color-primary);
 }
 
-.start-page h2 {
+.start.page h2 {
     color: var(--color-light-xl);
     margin-bottom: 41px;
 }
 
-.start-page p {
+.start.page p {
     color: var(--color-dark-s);
     margin-bottom: 41px;
+}
+
+.help-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.help h3 {
+    text-align: center;
 }
 
 .items-list {
@@ -234,9 +248,13 @@ button:hover {
     justify-content: center;
     flex-wrap: wrap;
     column-gap: 11.6%;
-    background-color: coral;
+    row-gap: 3.25rem;
 }
 
 .item {
-    background-color: chartreuse;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
 }
