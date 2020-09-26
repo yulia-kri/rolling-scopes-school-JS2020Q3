@@ -16,8 +16,8 @@
     --color-dark-3xl: #292929;
     --color-primary: #F1CDB3;
     --color-primary-light: #FDDCC4;
-    --start-screen-gradient-background: url(assets/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-    --footer-gradient-background: url(assets/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+    --start-screen-gradient-background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+    --footer-gradient-background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .main-container {
@@ -107,12 +107,20 @@ h2 {
 }
 
 h3 {
-    font-family: Georgia;
+    font-family: Georgia, serif;
     font-size: 35px;
     font-weight: 400;
     line-height: 45px;
     letter-spacing: .06em;
     color: var(--color-dark-l);
+}
+
+h4 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: .06em;
 }
 
 p {
@@ -134,6 +142,11 @@ button {
     font-size: 17px;
     line-height: 22px;
     letter-spacing: .06em;
+}
+
+button:hover {
+    cursor: pointer;
+    background: var(--color-primary-light);
 }
 
 .header {
@@ -186,6 +199,15 @@ button {
     line-height: 24px;
 }
 
+.nav a:hover {
+    cursor: pointer;
+    color: var(--color-light-s);
+}
+
+.nav a.active {
+    color: var(--color-light-s);
+}
+
 .nav a.active::after {
     content: '';
     position: absolute;
@@ -204,4 +226,17 @@ button {
 .start-page p {
     color: var(--color-dark-s);
     margin-bottom: 41px;
+}
+
+.items-list {
+    width: 85.5%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 11.6%;
+    background-color: coral;
+}
+
+.item {
+    background-color: chartreuse;
 }
