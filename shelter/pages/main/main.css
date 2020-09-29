@@ -122,6 +122,16 @@ h4 {
     font-weight: 400;
     line-height: 23px;
     letter-spacing: .06em;
+    color: var(--color-dark-l);
+}
+
+h5 {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: .06em;
+    color: var(--color-dark-l);
 }
 
 p {
@@ -129,6 +139,14 @@ p {
     font-size: 15px;
     line-height: 24px;
     color: var(--color-dark-xl);
+}
+
+.donation-description {
+    font-size: 12px;
+    font-style: italic;
+    line-height: 18px;
+    letter-spacing: 0px;
+    color: var(--color-dark-m);
 }
 
 button {
@@ -148,6 +166,17 @@ button {
 button:hover {
     cursor: pointer;
     background: var(--color-primary-light);
+}
+
+.credit-card {
+    text-decoration: none;
+    display: block;
+    background-color: var(--color-primary);
+    width: 349px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
 }
 
 .header {
@@ -257,4 +286,41 @@ button:hover {
     justify-content: center;
     align-items: center;
     row-gap: 2em;
+}
+
+.donation-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer .content-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 13%;
+}
+
+.footer-img {
+    align-self: flex-end;
+}
+
+.footer a {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    text-decoration: none;
+}
+
+.contacts-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 42px;
+}
+
+.location-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 33px;
+    margin-left: -20px;
 }
