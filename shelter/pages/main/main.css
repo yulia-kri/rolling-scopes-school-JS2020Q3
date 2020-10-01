@@ -5,6 +5,7 @@
 }
 
 :root {
+    font-size: 10px;
     --color-light-s: #FAFAFA;
     --color-light-l: #F6F6F6;
     --color-light-xl: #FFFFFF;
@@ -20,179 +21,35 @@
     --footer-gradient-background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
-.main-container {
-    width: 100vw;
-    /* max-width: 1920px; */
-    width: 1920px;
-    margin: 0 auto;
+body {
+    position: relative;
 }
 
-.page,
-.footer {
-    display: flex;
-    justify-content: center;
-}
-
-.start.page {
-    height: 908px;
-    background: var(--start-screen-gradient-background);
-}
-
-.about.page {
-    height: 588px;
-    background: var(--color-light-xl);
-}
-
-.our-pets.page {
-    height: 877px;
-    background: var(--color-light-l);
-}
-
-.help.page {
-    height: 611px;
-    background: var(--color-light-xl);
-}
-
-.donation.page {
-    height: 464px;
-    background: var(--color-light-l);
-}
-
-.footer {
-    height: 355px;
-    background: var(--footer-gradient-background);
-}
-
-.content-wrapper {
-    width: 62.5%;
-    /* max-width: 1200px; */
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.page-content {
-    display: flex;
-    column-gap: 42px;
-    align-items: center;
-    margin-top: 60px;
-}
-
-.text-content {
-    margin-bottom: 80px;
-}
-
-.about-content {
-    display: flex;
-    column-gap: 120px;
-    align-items: center;
-    padding: 0 175px;
-    margin-bottom: 20px;
-}
-
-.about-text {
-    display: flex;
-    flex-direction: column;
-    row-gap: 25px;
-}
-
-h2 {
-    font-family: Georgia, serif;
-    font-size: 44px;
-    font-weight: 400;
-    line-height: 57px;
-    letter-spacing: 0em;
-    color: var(--color-dark-l);
-}
-
-h3 {
-    font-family: Georgia, serif;
-    font-size: 35px;
-    font-weight: 400;
-    line-height: 45px;
-    letter-spacing: .06em;
-    color: var(--color-dark-l);
-    text-align: center;
-}
-
-h4 {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: .06em;
-    color: var(--color-dark-l);
-}
-
-h5 {
-    font-family: Georgia, serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: .06em;
-    color: var(--color-dark-l);
-}
-
-p {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    line-height: 24px;
-    color: var(--color-dark-xl);
-}
-
-.donation-description {
-    font-size: 12px;
-    font-style: italic;
-    line-height: 18px;
-    letter-spacing: 0px;
-    color: var(--color-dark-m);
-}
-
-.button {
-    outline: none;
-    border: none;
-    width: 207px;
-    height: 52px;
-    border-radius: 100px;
-    background: var(--color-primary);
-    color: var(--color-dark-xl);
-    font-family: Georgia, serif;
-    font-size: 17px;
-    line-height: 22px;
-    letter-spacing: .06em;
-}
-
-.button:hover {
-    cursor: pointer;
-    background: var(--color-primary-light);
-}
-
-.credit-card {
+a {
     text-decoration: none;
-    display: block;
-    background-color: var(--color-primary);
-    width: 349px;
-    border-radius: 9px;
+}
+
+.wrapper {
+    max-width: 120rem;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
 }
 
 .header {
-    height: 60px;
-    width: inherit;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
+    width: 100%;
+    max-width: 128rem;
+    position: absolute;
+    top: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .title {
     font-family: Georgia, serif;
-    font-size: 32px;
+    font-size: 3.2rem;
     font-weight: 400;
-    line-height: 35px;
+    line-height: 1.1em;
     letter-spacing: .06em;
     color: var(--color-primary);
     text-transform: capitalize;
@@ -200,34 +57,34 @@ p {
 
 .subtitle {
     font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 15px;
+    font-size: 1.3rem;
+    line-height: 1.1em;
     letter-spacing: .1em;
     color: var(--color-light-xl);
-    padding-top: 10px;
-    padding-left: 4px;
+    padding-top: .8em;
+    padding-left: .4em;
 }
 
 .nav {
-    width: 37%;
+    flex-basis: 37%;
+    display: flex;
+    align-items: center;
 }
 
 .nav ul {
-    list-style: none;
     display: flex;
+    flex: 1;
     justify-content: space-between;
-    padding-top: 16px;
+    align-items: center;
+    list-style: none;
 }
 
 .nav a {
-    text-decoration: none;
     position: relative;
     color: var(--color-dark-s);
     font-family: Arial, sans-serif;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 160%;
-    line-height: 24px;
 }
 
 .nav a:hover {
@@ -249,131 +106,199 @@ p {
     background: var(--color-primary);
 }
 
-.start.page h2 {
-    color: var(--color-light-xl);
-    margin-bottom: 41px;
+.page,
+.footer {
+    max-width: 128rem;
+    margin: 0 auto;
 }
 
-.start.page p {
-    color: var(--color-dark-s);
-    margin-bottom: 41px;
+.start.page {
+    background: var(--start-screen-gradient-background);
+    padding-top: 18rem;
 }
 
-.help-wrapper {
-    width: 100%;
+.start-text-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 3.5rem;
-    margin-bottom: 1.25rem;
+    justify-content: center;
+    row-gap: 4.1rem;
+    padding-bottom: 8rem;
 }
 
-.help h3 {
+.start-text-block h2 {
+    color: var(--color-light-xl);
+    max-width: 31rem;
+}
+
+.start-text-block p {
+    color: var(--color-dark-s);
+    max-width: 46rem;
+}
+
+.start-text-block button {
+    align-self: flex-start;
+}
+
+.image-block {
+    display: flex;
+}
+
+.image-block img {
+    width: 100%;
+}
+
+.header-2 {
+    font-family: Georgia, serif;
+    font-size: 4.4rem;
+    font-weight: 400;
+    line-height: 1.3em;
+    color: var(--color-dark-l);
+}
+
+.header-3 {
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.3em;
+    letter-spacing: .06em;
+    color: var(--color-dark-l);
+}
+
+.header-4 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.15em;
+    letter-spacing: .06em;
+    color: var(--color-dark-l);
+}
+
+.header-5 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.1em;
+    letter-spacing: .06em;
+    color: var(--color-dark-l);
+}
+
+.paragraph-l {
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.6em;
+    color: var(--color-dark-xl);
+}
+
+.paragraph-s {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.5em;
+    color: var(--color-dark-m);
+}
+
+.button {
+    outline: none;
+    border: none;
+    border-radius: 100px;
+    background: var(--color-primary);
+    color: var(--color-dark-xl);
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    line-height: 1.3em;
+    letter-spacing: .06em;
+    padding: .88em 2.65em;
+}
+
+.button:hover {
+    cursor: pointer;
+    background: var(--color-primary-light);
+}
+
+.about.page {
+    background: var(--color-light-xl);
+}
+
+.about .wrapper {
+    padding-top: 8rem;
+    padding-bottom: 10rem;
+    justify-content: center;
+    column-gap: 10%;
+}
+
+.about-text-block h3 {
+    margin-top: 1.4rem;
+    max-width: 37rem;
+}
+
+.about-text-block p {
+    margin-top: 2.5rem;
+    max-width: 43rem;
+}
+
+.pets.page {
+    background: var(--color-light-l);
+}
+
+.pets .wrapper,
+.help .wrapper {
+    padding-top: 8rem;
+    padding-bottom: 10rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 6rem;
+}
+
+.pets h3 {
+    max-width: 40rem;
     text-align: center;
 }
-
-.items-list {
-    width: 85.5%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    column-gap: 11.6%;
-    row-gap: 3.25rem;
-}
-
-.item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 2em;
-}
-
-.donation-content {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.footer .content-wrapper {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 13%;
-}
-
-.footer-img {
-    align-self: flex-end;
-}
-
-.footer a {
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
-    text-decoration: none;
-}
-
-.contacts-block {
-    display: flex;
-    flex-direction: column;
-    row-gap: 42px;
-}
-
-.location-block {
-    display: flex;
-    flex-direction: column;
-    row-gap: 33px;
-    margin-left: -20px;
-}
-
-.our-pets .content-wrapper {
-    margin-bottom: 20px;
-} 
 
 .slider {
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 270px);
+    grid-template-columns: repeat(3, 27rem);
     column-gap: 7.5%;
     justify-content: center;
     overflow: hidden;
 }
 
-.btn {
-    width: 52px;
-    height: 52px;
+.slider-btn {
+    outline: none;
     background: none;
     border: 2px solid var(--color-primary);
     border-radius: 100%;
-    overflow: hidden;
+    padding: 1.7rem;
     position: absolute;
-    top: calc(50% - 52px/2);
+    top: calc(50% - 5.2rem/2);
 }
 
-.btn.next {
+.slider-btn.next {
     right: 0;
 }
 
-.btn.next img {
+.slider-btn.next object {
     transform: scaleX(-1);
 }
 
-.btn:hover {
+.slider-btn:hover {
     background-color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
     cursor: pointer;
 }
 
 .card {
-    width: 270px;
-    height: 435px;
+    width: 100%;
+    height: 43.5rem;
     border-radius: 9px;
     background-color: var(--color-light-s);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    row-gap: 30px;
+    row-gap: 3rem;
 }
 
 .card:hover {
@@ -383,27 +308,128 @@ p {
 
 .card-title {
     font-family: Georgia, serif;
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 2rem;
+    line-height: 1.15em;
     letter-spacing: .06em;
 }
 
 .card-button {
     outline: none;
-    border: 2px solid var(--color-primary);
-    width: 187px;
-    height: 52px;
+    border: 2px solid var(--color-primary);;
     border-radius: 100px;
-    background: var(--color-light-s);
+    background: none;
     color: var(--color-dark-xl);
     font-family: Georgia, serif;
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 1.7rem;
+    line-height: 1.3em;
     letter-spacing: .06em;
+    padding: .8em 2.5em;
 }
 
 .card-button:hover {
     background: var(--color-primary-light);
-    border: none;
+    border-color: var(--color-primary-light);
     cursor: pointer;
+}
+
+.help.page {
+    background: var(--color-light-xl);
+}
+
+.help h3 {
+    max-width: 31rem;
+    text-align: center;
+}
+
+.items-list {
+    width: 85.5%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5.1rem 11.6%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3.2rem;
+}
+
+.donation.page {
+    background: var(--color-light-l);
+}
+
+.donation .wrapper {
+    padding-top: 8.2rem;
+    padding-bottom: 10rem;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2.5%;
+}
+
+.donation-text-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.donation-text-block h3 {
+    max-width: 30rem;
+}
+
+.donation-text-block p {
+    max-width: 38rem;
+}
+
+.credit-card {
+    width: 35rem;
+    background-color: var(--color-primary);
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+}
+
+.footer {
+    background: var(--footer-gradient-background);
+}
+
+.footer .wrapper {
+    padding-top: 4rem;
+    align-items: flex-end;
+}
+
+.footer a {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.contacts-block {
+    max-width: 28rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4.2rem;
+    padding-bottom: 6.5rem;
+}
+
+.location-block {
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3.2rem;
+    padding-bottom: 6.5rem;
+}
+
+.contacts-block h3,
+.location-block h3 {
+    color: var(--color-light-xl);
+}
+
+.contacts-block h4,
+.location-block h4 {
+    color: var(--color-primary);
 }
