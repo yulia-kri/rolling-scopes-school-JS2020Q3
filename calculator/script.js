@@ -36,29 +36,68 @@ class Calculator {
         const firstOperand = parseFloat(this.previousOperand);
         const secondOperand = parseFloat(this.currentOperand);
         if (isNaN(firstOperand) || isNaN(secondOperand)) return;
-        switch(this.operation) {
-            case '÷':
-                result = firstOperand / secondOperand;
-                break;
-            case '×':
-                result = firstOperand * secondOperand;
-                break;
-            case '-':
-                result = firstOperand - secondOperand;
-                break;
-            case '+':
-                result = firstOperand + secondOperand;
-                break;
-            case '^':
-                result = Math.pow(firstOperand,secondOperand);
-                break;
-            default:
-                return;
+
+        if (!Number.isInteger(firstOperand) && !Number.isInteger(secondOperand)) {
+            result = this.fixDecimal(firstOperand, secondOperand);
+        } else {
+            switch(this.operation) {
+                case '÷':
+                    result = firstOperand / secondOperand;
+                    break;
+                case '×':
+                    result = firstOperand * secondOperand;
+                    break;
+                case '-':
+                    result = firstOperand - secondOperand;
+                    break;
+                case '+':
+                    result = firstOperand + secondOperand;
+                    break;
+                case '^':
+                    result = Math.pow(firstOperand,secondOperand);
+                    break;
+                default:
+                    return;
+            }
         }
         this.readyToReset = true;
         this.currentOperand = result;
         this.operation = undefined;
         this.previousOperand = '';
+    }
+
+    fixDecimal(a, b) {
+        const aDecimalDigits = a.toString().split('.')[1].length;
+        const bDecimalDigits = b.toString().split('.')[1].length;
+        const aMultiplier = Math.pow(10, aDecimalDigits);
+        const bMultiplier = Math.pow(10, bDecimalDigits);
+        let n;
+        if (aMultiplier > bMultiplier) {
+            n = aMultiplier;
+        } else {
+            n = bMultiplier;
+        }
+        let result;
+        switch(this.operation) {
+            case '÷':
+                result = (a * n) / (b * n);
+                break;
+            case '×':
+                result = ((a * n) * (b * n)) / (n * n);
+                break;
+            case '-':
+                result = ((a * n) - (b * n)) / n;
+                break;
+            case '+':
+                result = ((a * n) + (b * n)) / n;
+                break;
+            case '^':
+                result = Math.pow(a, b);
+                break;
+            default:
+                return;
+        }
+        return result;
     }
 
     getSquareRoot() {
