@@ -311,15 +311,15 @@ span {
 
 .card-button {
     outline: none;
+    background: none;
     border: 2px solid var(--color-primary);;
     border-radius: 100px;
-    background: none;
     color: var(--color-dark-xl);
     font-family: Georgia, serif;
     font-size: 1.7rem;
     line-height: 1.3em;
     letter-spacing: .06em;
-    padding: .8em 2.5em;
+    padding: 1.3rem 4.3rem;
 }
 
 .card-button:hover {
@@ -384,7 +384,6 @@ span {
 
 .footer .wrapper {
     padding-top: 4rem;
-    align-items: flex-end;
     flex-flow: row wrap;
 }
 
@@ -395,19 +394,19 @@ span {
 }
 
 .contacts-block {
-    width: 28rem;
+    max-width: 28rem;
     display: flex;
     flex-direction: column;
     row-gap: 4rem;
-    padding-bottom: 6.5rem;
+    padding-top: 1.6rem;
 }
 
 .location-block {
-    width: 30rem;
+    max-width: 30.2rem;
     display: flex;
     flex-direction: column;
     row-gap: 3.3rem;
-    padding-bottom: 6.5rem;
+    padding-top: 1.6rem;
 }
 
 .contacts-block h3,
@@ -531,6 +530,12 @@ span {
         padding-top: 3rem;
         justify-content: center;
         column-gap: 6rem;
+        row-gap: 6.5rem;
+    }
+
+    .contacts-block,
+    .location-block {
+        padding-top: 0;
     }
 }
 
@@ -644,10 +649,12 @@ span {
         width: 28rem;
     }
 
-    .contacts-block,
-    .location-block {
+    .contacts-block {
         align-items: center;
-        padding-bottom: 0;
+    }
+
+    .location-block {
+        max-width: 30rem;
         row-gap: 4rem;
     }
 
@@ -658,9 +665,7 @@ span {
 
     .location-block h3 {
         max-width: 27rem;
-    }
-
-    .location-block a:last-child {
-        align-self: flex-start;
+        text-align: center;
+        align-self: center;
     }
 }
