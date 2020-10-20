@@ -256,13 +256,13 @@ span {
 
 .slider {
     width: 100%;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto 99rem auto;
     justify-content: space-between;
+    align-items: center;
 }
 
 .slider-items {
-    max-width: 82.5%;
     display: flex;
     column-gap: 9rem;
     overflow: hidden;
@@ -508,8 +508,11 @@ span {
         margin-top: 0;
     }
 
+    .slider {
+        grid-template-columns: auto 58rem auto;
+    }
+
     .slider-items {
-        max-width: 82%;
         column-gap: 4rem;
     }
 
@@ -609,17 +612,28 @@ span {
     }
 
     .slider {
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        row-gap: 2rem;
     }
 
     .slider-btn {
         order: 2;
-        margin: 1.9rem 4rem 0;
+    }
+
+    .slider-btn.prev {
+        margin-right: 4rem;
+        justify-self: end;
+    }
+
+    .slider-btn.next {
+        margin-left: 4rem;
+        justify-self: start;
     }
 
     .slider-items {
-        max-width: 90%;
+        width: 27rem;
+        grid-column: 1 / -1;
     }
 
     .items-list {
