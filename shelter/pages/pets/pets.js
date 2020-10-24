@@ -15,7 +15,7 @@ let fullPetsList = [];
 let currentPage = 0;
 let petsPerPage = 8;
 
-fetch('./pets.json')
+fetch('../pets.json')
   .then(res => res.json())
   .then(list => {
     pets = list;
@@ -151,7 +151,6 @@ pagination.addEventListener('click', (e) => {
 })
 
 window.addEventListener('resize', () => {
-    console.log('resize!')
     checkPetsPerPage();
     displayPets(fullPetsList, petsPerPage, currentPage);
 })
