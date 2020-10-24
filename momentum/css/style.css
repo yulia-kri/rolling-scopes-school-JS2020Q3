@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+  
+body {
+  font-weight: 300;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #242423;
+  padding: 2rem 3rem;
+  transition: background-image 1s ease-in-out;
+}
+
+.btn {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  outline: none;
+  border: 0;
+  background: url("https://www.pngarts.com/files/7/Update-Button-PNG-Image.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: grayscale(1);
+}
+
+.btn:hover {
+  filter: grayscale(.8);
+  cursor: pointer;
+}
+
+.btn:active{
+  transform: scale(1.02);
+}
+
+[dataset-for="image"] {
+  top: 1rem;
+  left: 1rem;
+}
+
+[dataset-for="quote"] {
+  width: 2.5rem;
+  height: 2.5rem;
+  top: -2rem;
+  right: -2rem;
+}
+
+.wrapper {
+  height: 16rem;
+  background-color: #e8eddf;
+  width: 25%;
+  opacity: 0.8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  row-gap: .5rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.weather-description {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.weather-icon {
+  font-size: 4rem;
+}
+
+.temperature {
+  font-size: 5rem;
+}
+
+.day {
+  text-transform: uppercase;
+  color: #f5cb5c;
+}
+
+.time {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.name,
+.focus {
+  color: #f5cb5c;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+.quote {
+  max-width: 90%;
+  position: relative;
+  background-color: #e8eddf;
+  opacity: 0.8;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  padding: .5rem .7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  margin-bottom: 1rem;
+}
+  
+@media (max-width: 1200px) {
+  .wrapper {
+    height: 17rem;
+  }
+}
+
+@media (max-width: 870px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 12px;
+  }
+
+  body {
+    padding: 1rem;
+    padding-top: 4rem;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .wrapper {
+    width: 70%;
+    height: auto;
+  }
+
+  .weather {
+    flex-direction: row;
+    column-gap: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .quote {
+    width: 70%;
+    align-self: center;
+  }
+}
+
+@media (max-width: 630px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  .quote {
+    width: 80%;
+  }
+}
+
+@media (max-width: 460px) {
+  :root {
+    font-size: 10px;
+  }
+
+  .wrapper {
+    width: 90%;
+  }
+
+  .quote {
+    width: 90%;
+  }
+}
