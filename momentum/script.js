@@ -25,6 +25,10 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds();
 
+  if (sec == 0 && min == 0) {
+    setBgGreet();
+  }
+
   displayTime.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
   setTimeout(showTime, 1000);
@@ -57,6 +61,9 @@ async function getWeather() {
         wind.textContent = `Wind: ${data.wind.speed} m/s`;
     } catch (error) {
         alert('There is no such city! Please try another.');
+        temperature.textContent = '';
+        humidity.textContent = '';
+        wind.textContent = '';
     }
 }
 
@@ -73,7 +80,7 @@ function setBgGreet() {
   let today = new Date(),
     hour = today.getHours();
 
-  document.body.style.backgroundImage =`url('./assets/images/${hour}.jpg')`;
+  viewBgImage(hour);
 
   if (hour < 6) {
     greeting.textContent = 'Good Night, ';
@@ -86,65 +93,34 @@ function setBgGreet() {
   }
 }
 
-function getName() {
-  if (localStorage.getItem('name') === null) {
-    name.textContent = '[Enter Name]';
+
+function getItem(elem) {
+  if (localStorage.getItem(elem.id) === null) {
+    elem.textContent = `[Enter ${elem.id}]`;
   } else {
-    name.textContent = localStorage.getItem('name');
+    elem.textContent = localStorage.getItem(elem.id);
   }
 }
 
-function setName(e) {
+function setItem(e) {
   if (e.type === 'keypress') {
     if (e.code === 'Enter') {
-      localStorage.setItem('name', e.target.innerText);
-      name.blur();
-    }
-  } else {
-    localStorage.setItem('name', e.target.innerText);
-  }
-}
-
-function getFocus() {
-  if (localStorage.getItem('focus') === null) {
-    focus.textContent = '[Enter Focus]';
-  } else {
-    focus.textContent = localStorage.getItem('focus');
-  }
-}
-
-function setFocus(e) {
-  if (e.type === 'keypress') {
-    if (e.code === 'Enter') {
-      localStorage.setItem('focus', e.target.innerText);
-      focus.blur();
-    }
-  } else {
-    localStorage.setItem('focus', e.target.innerText);
-  }
-}
-
-function getCity() {
-    if (localStorage.getItem('focus') === null) {
-      city.textContent = '[Enter City]';
-    } else {
-      city.textContent = localStorage.getItem('city');
-    }
-  }
-
-function setCity(e) {
-    if (e.code === 'Enter') {
-      if (e.target.innerText === '') {
-        city.textContent = localStorage.getItem('city');
-        getWeather();
+      if (this.innerText !== '') {
+        localStorage.setItem(this.id, this.innerText);
       } else {
-        localStorage.setItem('city', e.target.innerText);
+        this.textContent = localStorage.getItem(this.id);
+      }
+      if (this.id === 'city') {
         getWeather();
       }
-      city.blur();
-    } else {
-      localStorage.setItem('city', e.target.innerText);
+      this.blur();
     }
+  } else if (e.type === 'blur') {
+    this.textContent = localStorage.getItem(this.id);
+  } else if (e.type === 'click') {
+    localStorage.setItem(this.id, this.textContent);
+    this.textContent = '';
+  }
 }
 
 let i = new Date().getHours();
@@ -172,18 +148,28 @@ function changeImage() {
 showTime();
 showDate();
 setBgGreet();
-getName();
-getFocus();
+getItem(name);
+getItem(focus);
+getItem(city);
 
 document.addEventListener('DOMContentLoaded', () => {
+  getQuote();
+  if (localStorage.getItem('city') !== null) {
     getWeather();
-    getQuote();
+  }
 });
 
-city.addEventListener('keypress', setCity);
-name.addEventListener('keypress', setName);
-name.addEventListener('blur', setName);
-focus.addEventListener('keypress', setFocus);
-focus.addEventListener('blur', setFocus);
+name.addEventListener('keypress', setItem);
+name.addEventListener('blur', setItem);
+name.addEventListener('click', setItem);
+focus.addEventListener('keypress', setItem);
+focus.addEventListener('blur', setItem);
+focus.addEventListener('click', setItem);
+city.addEventListener('keypress', setItem);
+city.addEventListener('blur', setItem);
+city.addEventListener('click', setItem);
+
 btn.addEventListener('click', changeImage);
 quoteBtn.addEventListener('click', getQuote);
+
+// localStorage.clear()
