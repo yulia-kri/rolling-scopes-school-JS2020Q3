@@ -1,5 +1,6 @@
 const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav');
+const ourPetsNavLink = document.querySelector('.nav li:nth-child(2) > a');
 const overlay = document.querySelector('.overlay');
 const petsContainer = document.getElementById('pets');
 const pagination = document.querySelector('.navigation-buttons');
@@ -161,6 +162,7 @@ function showMenu() {
     menuBtn.classList.add('open');
     navLinks.classList.add('active');
     overlay.classList.add('active');
+    document.querySelector('.header-logo').classList.add('visually-hidden');
     document.querySelector('body').style.overflowY = 'hidden';
     isMenuOpen = true;
 }
@@ -169,6 +171,7 @@ function hideMenu() {
     menuBtn.classList.remove('open');
     navLinks.classList.remove('active');
     overlay.classList.remove('active');
+    document.querySelector('.header-logo').classList.remove('visually-hidden');
     document.querySelector('body').style.overflowY = '';
     isMenuOpen = false;
 }
@@ -226,6 +229,13 @@ modalWindow.init = function() {
 }
 
 const petModal = modalWindow.init();
+
+ourPetsNavLink.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+    if (isMenuOpen) {
+        hideMenu();
+    }
+})
 
 menuBtn.addEventListener('click', () => {
     isMenuOpen ? hideMenu() : showMenu();

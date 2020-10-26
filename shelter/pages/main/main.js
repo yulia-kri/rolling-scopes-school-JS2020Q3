@@ -1,8 +1,8 @@
 const menuBtn = document.querySelector('.menu-btn');
+const aboutShelterNavLink = document.querySelector('.nav li:nth-child(1) > a');
 const navLinks = document.querySelector('.nav');
 const slider = document.querySelector('.slider');
 const petsSlide = document.querySelector('.slider-items');
-const prevBtn = document.querySelector('.slider-btn.prev');
 const overlay = document.querySelector('.overlay');
 
 let pets = [];
@@ -66,6 +66,7 @@ function showMenu() {
     menuBtn.classList.add('open');
     navLinks.classList.add('active');
     overlay.classList.add('active');
+    document.querySelector('.header-logo').classList.add('visually-hidden');
     document.querySelector('body').style.overflowY = 'hidden';
     isMenuOpen = true;
 }
@@ -74,6 +75,7 @@ function hideMenu() {
     menuBtn.classList.remove('open');
     navLinks.classList.remove('active');
     overlay.classList.remove('active');
+    document.querySelector('.header-logo').classList.remove('visually-hidden');
     document.querySelector('body').style.overflowY = '';
     isMenuOpen = false;
 }
@@ -132,12 +134,27 @@ modalWindow.init = function() {
 
 const petModal = modalWindow.init();
 
+aboutShelterNavLink.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+    if (isMenuOpen) {
+        hideMenu();
+    }
+})
+
 slider.addEventListener('click', (e) => {
     const petCards = Array.from(document.querySelectorAll('.card'));
     const selectedPet = e.target.closest('.card');
+    const prevButton = e.target.closest('.prev');
+    const nextButton = e.target.closest('.next');
 
-    if (e.target.classList.contains('next')) {
-        if ((index == petCards.length - cardsPerPage) || (cardsPerPage == 3 && index == 6)) {
+    if (e.target == nextButton) {
+        checkCardsPerPage();
+
+        if (cardsPerPage == 1 && index == petCards.length - cardsPerPage) {
+            index = 0;
+        } else if (cardsPerPage == 2 && (index == 6 || index == 7)) {
+            index = 0;
+        } else if (cardsPerPage == 3 && (index == 5 || index == 6 || index == 7)) {
             index = 0;
         } else {
             index = index + cardsPerPage;
@@ -146,18 +163,31 @@ slider.addEventListener('click', (e) => {
         showActiveCards(activeCards);
     }
 
-    if (e.target.classList.contains('prev')) {
-        if (index == 0) {
-            if (cardsPerPage == 3) {
-                index = 6;
-            } else {
+    if (e.target == prevButton) {
+        checkCardsPerPage();
+
+        if (cardsPerPage == 1) {
+            if (index == 0) {
                 index = petCards.length - cardsPerPage;
-            }
+             } else {
+                index = index - cardsPerPage;
+             }
+        } else if (cardsPerPage == 2) {
+            if (index == 0 || index == 1) {
+                index = petCards.length - cardsPerPage;
+             } else {
+                index = index - cardsPerPage;
+             }
         } else {
-            index = index - cardsPerPage;
+            if (index == 0 || index == 1 || index == 2) {
+                index = petCards.length - cardsPerPage + 1;
+             } else {
+                index = index - cardsPerPage;
+             }
         }
-        const activeCards = petCards.slice(index, index + cardsPerPage);
-        showActiveCards(activeCards);  
+
+        activeCards = petCards.slice(index, index + cardsPerPage);
+        showActiveCards(activeCards);
     }
 
     if (selectedPet) {
@@ -180,4 +210,13 @@ overlay.addEventListener('click', (e) => {
     if (isModalOpen) {
         petModal.close();
     }
+})
+
+window.addEventListener('resize', () => {
+    checkCardsPerPage();
+    const petCards = Array.from(document.querySelectorAll('.card'));
+    const displayedCard = document.querySelector('.card.active').dataset.pet;
+    const index = pets.findIndex(card => card.name == displayedCard);
+    const activeCards = petCards.slice(index, index + cardsPerPage);
+    showActiveCards(activeCards);
 })
