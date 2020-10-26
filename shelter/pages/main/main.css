@@ -524,7 +524,7 @@ span {
 }
 
 .modal-image-block {
-    flex-basis: 50rem;
+    width: 50rem;
 }
 
 .modal-image-block img {
@@ -564,7 +564,12 @@ span {
 }
 
 .modal-list li {
-    padding: .5rem 0;
+    margin-top: 1rem;
+    line-height: 1.2em;
+}
+
+.modal-list li:first-child {
+    margin-top: 0;
 }
 
 @media (max-width: 1279px) {
@@ -638,6 +643,31 @@ span {
     .location-block {
         padding-top: 0;
     }
+
+    .modal {
+        width: 63rem;
+        align-items: flex-start;
+    }
+
+    .modal-image-block {
+        width: 35rem;
+    }
+
+    .modal-text-block {
+        max-width: 26rem;
+        row-gap: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 0;
+        margin-right: .9rem;
+    }
+
+    .modal-text-block h5 {
+        font-size: 1.3rem;
+    }
+
+    .modal-list li {
+        margin-top: .5rem;
+    }
 }
 
 @media (max-width: 767px) {
@@ -675,18 +705,18 @@ span {
         margin-right: 4.3rem;
     }
 
-    .header-2,
-    .header-3 {
+    .wrapper .header-2,
+    .wrapper .header-3 {
         font-size: 2.5rem;
         letter-spacing: .06em;
         text-align: center;
     }
     
-    .header-4 {
+    .wrapper .header-4 {
         font-size: 1.5rem;
     }
 
-    .header-5 {
+    .wrapper .header-5 {
         letter-spacing: 0;
         line-height: 1.6em;
         text-align: center;
@@ -800,5 +830,31 @@ span {
         max-width: 27rem;
         text-align: center;
         align-self: center;
+    }
+
+    .modal {
+        width: 24rem;
+    }
+
+    .modal-image-block {
+        display: none;
+    }
+
+    .modal-text-block {
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .modal-text-block .header-3,
+    .modal-text-block .header-4 {
+        text-align: center;
+    }
+
+    .modal-text-block h5 {
+        text-align: justify;
+    }
+
+    .modal-list {
+        margin-top: .4rem;
     }
 }
