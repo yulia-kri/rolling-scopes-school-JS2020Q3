@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1">
+    <link rel="stylesheet" href="pets.css">
+    <script src="pets.js" defer></script>
+    <title>Pets</title>
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="header">
+        <div class="wrapper">
+            <a href="../main/main.html" class="header-logo">
+                <h1 class="title">Cozy house</h1>
+                <p class="subtitle">Shelter for pets in Boston</p>
+            </a>
+            <div class="menu-btn">
+                <div class="menu-btn__burger">
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-logo">
+                    <h1 class="title">Cozy house</h1>
+                    <p class="subtitle">Shelter for pets in Boston</p>
+                </div>
+                <ul>
+                    <li><a href="../main/main.html">About the shelter</a></li>
+                    <li><a class="active" href="#">Our pets</a></li>
+                    <li><a href="#">Help the shelter</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="wrapper">
+            <h3 class="page-title">
+                <span class="header-3">Our friends who</span>
+                <span class="header-3">are looking for a house</span>
+            </h3>
+            <div class="cards" id="pets"></div>
+            <div class="navigation-buttons">
+                <button class="nav-btn inactive" data-btn="first">&lt;&lt;</button>
+                <button class="nav-btn inactive" data-btn="prev">&lt;</button>
+                <button class="nav-btn current">1</button>
+                <button class="nav-btn" data-btn="next">&gt;</button>
+                <button class="nav-btn" data-btn="last">&gt;&gt;</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="contacts-block">
+                <h3 class="header-3">For questions and suggestions</h3>
+                <a href="mailto:email@shelter.com">
+                    <img src="../../assets/icons/mail.svg" alt="email icon" class="email-icon">
+                    <h4 class="header-4">email@shelter.com</h4>
+                </a>
+                <a href="tel:+136745677554">
+                    <img src="../../assets/icons/icon-phone.svg" alt="phone icon">
+                    <h4 class="header-4">+13 674 567 75 54</h4>
+                </a>
+            </div>
+            <div class="location-block">
+                <h3 class="header-3">We are waiting for your visit</h3>
+                <a href="https://www.google.com/maps/place/1+Central+St,+Boston,+MA+02109,+USA/@42.3585558,-71.056915,17z/data=!3m1!4b1!4m5!3m4!1s0x89e370868bc2ce7b:0x82fa7db94f5fea9e!8m2!3d42.3585519!4d-71.0547263" target="_blank">
+                    <img src="../../assets/icons/pin.svg" alt="location marker icon">
+                    <h4 class="header-4">1 Central Street, Boston (entrance from the store)</h4>
+                </a>
+                <a href="https://www.google.com/maps/place/South+Park+Court,+18+S+Park+Rd,+London+SW19+8TD,+UK/@51.4202718,-0.2023686,17z/data=!3m1!4b1!4m5!3m4!1s0x487608baa7401b31:0x18e66d9fcd2f7d77!8m2!3d51.4202685!4d-0.2001799" target="_blank">
+                    <img src="../../assets/icons/pin.svg" alt="location marker icon">
+                    <h4 class="header-4">18 South Park, London</h4>
+                </a>
+            </div>
+            <div class="image-block">
+                <img src="../../assets/images/footer-puppy.png" alt="puppy">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
