@@ -4,6 +4,7 @@ const navLinks = document.querySelector('.nav');
 const slider = document.querySelector('.slider');
 const petsSlide = document.querySelector('.slider-items');
 const overlay = document.querySelector('.overlay');
+const inactiveLinks = document.querySelectorAll('a.inactive');
 
 let pets = [];
 let index = 0;
@@ -133,6 +134,12 @@ modalWindow.init = function() {
 }
 
 const petModal = modalWindow.init();
+
+inactiveLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+    })
+})
 
 aboutShelterNavLink.addEventListener('click', () => {
     window.scrollTo(0, 0);

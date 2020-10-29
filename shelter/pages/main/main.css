@@ -101,9 +101,10 @@ span {
     font-family: Arial, sans-serif;
     font-size: 1.5rem;
     line-height: 160%;
+    cursor: default;
 }
 
-.nav a:hover {
+.nav a:not(.inactive):hover {
     cursor: pointer;
     color: var(--color-light-s);
 }
@@ -303,6 +304,10 @@ span {
     display: none;
 }
 
+.card:hover {
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+}
+
 .card.active {
     display: flex;
 }
@@ -386,6 +391,10 @@ span {
     justify-content: space-between;
     padding: 1rem 1.5rem;
     text-decoration: none;
+}
+
+.credit-card:hover {
+    background-color: var(--color-primary-light);
 }
 
 .footer {

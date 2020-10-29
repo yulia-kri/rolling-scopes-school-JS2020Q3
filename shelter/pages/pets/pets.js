@@ -9,6 +9,7 @@ const firstBtn = document.querySelector('[data-btn="first"]');
 const prevBtn = document.querySelector('[data-btn="prev"]');
 const nextBtn = document.querySelector('[data-btn="next"]');
 const lastBtn = document.querySelector('[data-btn="last"]');
+const inactiveLinks = document.querySelectorAll('a.inactive');
 
 let pets = [];
 let fullPetsList = [];
@@ -163,6 +164,7 @@ function showMenu() {
     navLinks.classList.add('active');
     overlay.classList.add('active');
     document.querySelector('.header-logo').classList.add('visually-hidden');
+    document.querySelector('.header').style.background = 'none';
     document.querySelector('body').style.overflowY = 'hidden';
     isMenuOpen = true;
 }
@@ -172,6 +174,7 @@ function hideMenu() {
     navLinks.classList.remove('active');
     overlay.classList.remove('active');
     document.querySelector('.header-logo').classList.remove('visually-hidden');
+    document.querySelector('.header').style.background = 'var(--color-light-xl)';
     document.querySelector('body').style.overflowY = '';
     isMenuOpen = false;
 }
@@ -229,6 +232,12 @@ modalWindow.init = function() {
 }
 
 const petModal = modalWindow.init();
+
+inactiveLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+    })
+})
 
 ourPetsNavLink.addEventListener('click', () => {
     window.scrollTo(0, 0);
