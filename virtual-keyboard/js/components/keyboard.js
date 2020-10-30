@@ -1,47 +1,50 @@
-import en from "../data/en.js";
-import ru from "../data/ru.js";
-import create from "../utils/create.js";
-import Key from "./key.js";
+import en from '../data/en.js';
+import ru from '../data/ru.js';
+import create from '../utils/create.js';
+import Key from './key.js';
 
 const languages = {};
 languages.en = en;
 languages.ru = ru;
-
-const main = create("div", "main-container");
 
 export default class Keyboard {
   constructor(keysOrder) {
     this.keysOrder = keysOrder;
     this.keysPressed = {};
     this.isCaps = false;
+    this.isKeyboardOpen = true;
   }
 
   init() {
     this.keyboardLayout = languages.en;
     this.textarea = create(
-      "textarea",
-      "use-keyboard-input",
+      'textarea',
+      'use-keyboard-input',
       null,
-      ["placeholder", "Start type something..."],
-      ["rows", 5],
-      ["cols", 50],
-      ["spellcheck", false],
-      ["autocorrect", "off"]
+      ['placeholder', 'Start type something...'],
+      ['rows', 5],
+      ['cols', 50],
+      ['spellcheck', false],
+      ['autocorrect', 'off']
     );
-    this.keysContainer = create("div", "keyboard", null, ["language", "en"]);
+    this.keysContainer = create('div', 'keyboard', null, ['language', 'en']);
 
-    main.append(this.textarea);
-    main.append(this.keysContainer);
+    document.body.append(this.textarea);
+    document.body.append(this.keysContainer);
 
-    document.body.prepend(main);
+    this.textarea.addEventListener('focus', () => {
+      if (!this.isKeyboardOpen) {
+        this.open();
+      }
+    });
+
     return this;
   }
 
   createKeys() {
     this.keyButtons = [];
     this.keysOrder.forEach((row) => {
-      const rowElement = create("div", "keyboard__row", null);
-      rowElement.style.gridTemplateColumns = `repeat(${row.length}, 1fr)`;
+      const rowElement = create('div', 'keyboard__row', null);
       row.forEach((keyCode) => {
         const keyObj = this.keyboardLayout.find((key) => key.code === keyCode);
         if (keyObj) {
@@ -53,10 +56,10 @@ export default class Keyboard {
       this.keysContainer.append(rowElement);
     });
 
-    document.addEventListener("keyup", this.eventHandler);
-    document.addEventListener("keydown", this.eventHandler);
-    this.keysContainer.addEventListener("mousedown", this.preEventHandler);
-    this.keysContainer.addEventListener("mouseup", this.preEventHandler);
+    document.addEventListener('keyup', this.eventHandler);
+    document.addEventListener('keydown', this.eventHandler);
+    this.keysContainer.addEventListener('mousedown', this.preEventHandler);
+    this.keysContainer.addEventListener('mouseup', this.preEventHandler);
   }
 
   resetButtonState = ({
@@ -67,21 +70,32 @@ export default class Keyboard {
     const pressedKey = this.keyButtons.find(
       (keyButton) => keyButton.code === code
     );
-    pressedKey.keyContainer.classList.remove("active");
+    pressedKey.keyContainer.classList.remove('active');
     pressedKey.keyContainer.removeEventListener(
-      "mouseleave",
+      'mouseleave',
       this.resetButtonState
     );
   };
 
+  open() {
+    this.isKeyboardOpen = true;
+    this.keysContainer.classList.remove('keyboard--hidden');
+  }
+
+  close() {
+    this.isKeyboardOpen = false;
+    this.keysContainer.classList.add('keyboard--hidden');
+    this.textarea.blur();
+  }
+
   preEventHandler = (event) => {
     event.stopPropagation();
-    const keyDiv = event.target.closest(".keyboard__key");
+    const keyDiv = event.target.closest('.keyboard__key');
     if (!keyDiv) return;
     const {
       dataset: { code },
     } = keyDiv;
-    keyDiv.addEventListener("mouseleave", this.resetButtonState);
+    keyDiv.addEventListener('mouseleave', this.resetButtonState);
     this.eventHandler({ code, type: event.type });
   };
 
@@ -96,24 +110,22 @@ export default class Keyboard {
 
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) event.preventDefault();
-      pressedKeyObj.keyContainer.classList.add("active");
+      pressedKeyObj.keyContainer.classList.add('active');
 
       if (code.match(/Shift/)) {
         this.isShift = true;
         this.switchUpperCase();
       }
 
-      if (code == "CapsLock") {
+      if (code == 'CapsLock') {
         if (!this.isCaps) {
           this.isCaps = true;
         } else {
           this.isCaps = false;
-          pressedKeyObj.keyContainer.classList.remove("active");
+          pressedKeyObj.keyContainer.classList.remove('active');
         }
         this.switchUpperCase();
       }
-
-      // if () this.switchLanguage();
 
       if (!this.isCaps) {
         this.print(
@@ -138,22 +150,28 @@ export default class Keyboard {
         }
       }
     } else if (type.match(/keyup|mouseup/)) {
-      if (code != "CapsLock")
-        pressedKeyObj.keyContainer.classList.remove("active");
+      if (code != 'CapsLock')
+        pressedKeyObj.keyContainer.classList.remove('active');
 
       if (code.match(/Shift/)) {
         this.isShift = false;
         this.switchUpperCase();
       }
+
+      if (code == 'Lang') this.switchLanguage();
+
+      if (code == 'Done') {
+        this.close();
+      }
     }
   };
 
   switchLanguage() {
-    if (this.keysContainer.dataset.language == "en") {
-      this.keysContainer.dataset.language = "ru";
+    if (this.keysContainer.dataset.language == 'en') {
+      this.keysContainer.dataset.language = 'ru';
       this.keyboardLayout = languages.ru;
     } else {
-      this.keysContainer.dataset.language = "en";
+      this.keysContainer.dataset.language = 'en';
       this.keyboardLayout = languages.en;
     }
 
@@ -167,7 +185,7 @@ export default class Keyboard {
       if (curLangBtn.shift && curLangBtn.shift.match(/[^a-zA-Zа-яА-ЯёЁ0-9]/g)) {
         button.subst.innerHTML = curLangBtn.shift;
       } else {
-        button.subst.innerHTML = "";
+        button.subst.innerHTML = '';
       }
       button.letter.innerHTML = curLangBtn.small;
     });
@@ -180,11 +198,11 @@ export default class Keyboard {
     symbolKeyButtons.forEach((button) => {
       if (button.subst.innerHTML) {
         if (this.isShift) {
-          button.subst.classList.add("sub-active");
-          button.letter.classList.add("sub-inactive");
+          button.subst.classList.add('sub-active');
+          button.letter.classList.add('sub-inactive');
         } else if (!this.isShift) {
-          button.subst.classList.remove("sub-active");
-          button.letter.classList.remove("sub-inactive");
+          button.subst.classList.remove('sub-active');
+          button.letter.classList.remove('sub-inactive');
         }
       } else if (!button.subst.innerHTML) {
         if (this.isCaps) {
@@ -242,7 +260,7 @@ export default class Keyboard {
 
     if (fnBtnHandler[keyObj.code]) fnBtnHandler[keyObj.code]();
     else if (!keyObj.isFnKey) {
-      this.textarea.value = `${leftArea}${symbol || ""}${rightArea}`;
+      this.textarea.value = `${leftArea}${symbol || ''}${rightArea}`;
       carriagePos += 1;
     }
     this.textarea.setSelectionRange(carriagePos, carriagePos);
