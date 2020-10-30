@@ -13,6 +13,7 @@ export default class Keyboard {
     this.keysPressed = {};
     this.isCaps = false;
     this.isKeyboardOpen = true;
+    this.isSoundOn = true;
   }
 
   init() {
@@ -111,6 +112,7 @@ export default class Keyboard {
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) event.preventDefault();
       pressedKeyObj.keyContainer.classList.add('active');
+      if (this.isSoundOn) this.playSound(code);
 
       if (code.match(/Shift/)) {
         this.isShift = true;
@@ -157,6 +159,8 @@ export default class Keyboard {
         this.isShift = false;
         this.switchUpperCase();
       }
+
+      if (code == 'Sound') this.toggleSound();
 
       if (code == 'Lang') this.switchLanguage();
 
@@ -264,5 +268,32 @@ export default class Keyboard {
       carriagePos += 1;
     }
     this.textarea.setSelectionRange(carriagePos, carriagePos);
+  }
+
+  toggleSound() {
+    if (this.isSoundOn == true) {
+      document.querySelector('.keyboard__key[data-code="Sound"] i').innerText =
+        'volume_off';
+      this.isSoundOn = false;
+    } else if (this.isSoundOn == false) {
+      document.querySelector('.keyboard__key[data-code="Sound"] i').innerText =
+        'volume_up';
+      this.isSoundOn = true;
+    }
+  }
+
+  playSound(keyCode) {
+    let type;
+    if (keyCode.match('Shift|Caps|Backspace|Enter')) {
+      type = 'fn-key';
+    } else if (this.keysContainer.dataset.language == 'en') {
+      type = 'en-key';
+    } else {
+      type = 'ru-key';
+    }
+    const audio = document.querySelector(`audio[data-key="${type}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
   }
 }

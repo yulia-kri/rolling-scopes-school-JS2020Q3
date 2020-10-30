@@ -300,6 +300,11 @@ export default [
     code: 'Done',
   },
   {
+    small: `<i class="material-icons">volume_up</i>`,
+    shift: null,
+    code: 'Sound',
+  },
+  {
     small: 'RU',
     shift: null,
     code: 'Lang',

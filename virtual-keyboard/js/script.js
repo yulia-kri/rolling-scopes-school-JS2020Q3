@@ -64,7 +64,16 @@ const keysOrder = [
     'ArrowUp',
     'ShiftRight',
   ],
-  ['Done', 'Lang', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight'],
+  [
+    'Done',
+    'Sound',
+    'Lang',
+    'Space',
+    'AltRight',
+    'ArrowLeft',
+    'ArrowDown',
+    'ArrowRight',
+  ],
 ];
 
 new Keyboard(keysOrder).init().createKeys();
