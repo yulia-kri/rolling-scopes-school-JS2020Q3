@@ -305,6 +305,11 @@ export default [
     code: 'Sound',
   },
   {
+    small: `<i class="material-icons">mic_none</i>`,
+    shift: null,
+    code: 'Record',
+  },
+  {
     small: 'RU',
     shift: null,
     code: 'Lang',

@@ -7,6 +7,10 @@ const languages = {};
 languages.en = en;
 languages.ru = ru;
 
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
 export default class Keyboard {
   constructor(keysOrder) {
     this.keysOrder = keysOrder;
@@ -14,6 +18,7 @@ export default class Keyboard {
     this.isCaps = false;
     this.isKeyboardOpen = true;
     this.isSoundOn = true;
+    this.isSpeechRecording = false;
   }
 
   init() {
@@ -63,6 +68,17 @@ export default class Keyboard {
     this.keysContainer.addEventListener('mouseup', this.preEventHandler);
   }
 
+  open() {
+    this.isKeyboardOpen = true;
+    this.keysContainer.classList.remove('keyboard--hidden');
+  }
+
+  close() {
+    this.isKeyboardOpen = false;
+    this.keysContainer.classList.add('keyboard--hidden');
+    this.textarea.blur();
+  }
+
   resetButtonState = ({
     target: {
       dataset: { code },
@@ -77,17 +93,6 @@ export default class Keyboard {
       this.resetButtonState
     );
   };
-
-  open() {
-    this.isKeyboardOpen = true;
-    this.keysContainer.classList.remove('keyboard--hidden');
-  }
-
-  close() {
-    this.isKeyboardOpen = false;
-    this.keysContainer.classList.add('keyboard--hidden');
-    this.textarea.blur();
-  }
 
   preEventHandler = (event) => {
     event.stopPropagation();
@@ -127,6 +132,20 @@ export default class Keyboard {
           pressedKeyObj.keyContainer.classList.remove('active');
         }
         this.switchUpperCase();
+      }
+
+      if (code == 'Record') {
+        if (!this.isSpeechRecording) {
+          this.recognizeSpeech(pressedKeyObj);
+          document.querySelector(
+            '.keyboard__key[data-code="Record"] i'
+          ).innerText = 'mic';
+          document
+            .querySelector('[data-code="Record"]')
+            .classList.add('disabled');
+          this.isSpeechRecording = true;
+        }
+        return;
       }
 
       if (!this.isCaps) {
@@ -260,6 +279,10 @@ export default class Keyboard {
         const posFromLineBreak = rightArea.match(/^.*(\n).*(?!\1)/) || [[1]];
         carriagePos += posFromLineBreak[0].length;
       },
+      Record: () => {
+        this.textarea.value = `${leftArea}${symbol || ''}${rightArea}`;
+        carriagePos += symbol.length;
+      },
     };
 
     if (fnBtnHandler[keyObj.code]) fnBtnHandler[keyObj.code]();
@@ -295,5 +318,24 @@ export default class Keyboard {
     if (!audio) return;
     audio.currentTime = 0;
     audio.play();
+  }
+
+  recognizeSpeech(keyObj) {
+    recognition.interimResults = true;
+
+    recognition.addEventListener('result', (e) => {
+      const transcript = Array.from(e.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+
+      if (e.results[0].isFinal) {
+        this.print(keyObj, transcript);
+      }
+    });
+
+    recognition.addEventListener('end', recognition.start);
+
+    recognition.start();
   }
 }

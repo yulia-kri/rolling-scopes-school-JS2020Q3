@@ -73,6 +73,7 @@ const keysOrder = [
     'ArrowLeft',
     'ArrowDown',
     'ArrowRight',
+    'Record',
   ],
 ];
 
