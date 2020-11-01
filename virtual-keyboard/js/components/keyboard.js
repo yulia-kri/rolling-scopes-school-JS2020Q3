@@ -16,6 +16,7 @@ export default class Keyboard {
     this.keysOrder = keysOrder;
     this.keysPressed = {};
     this.isCaps = false;
+    this.isShift = false;
     this.isKeyboardOpen = true;
     this.isSoundOn = true;
     this.isSpeechRecording = false;
@@ -101,7 +102,9 @@ export default class Keyboard {
     const {
       dataset: { code },
     } = keyDiv;
-    keyDiv.addEventListener('mouseleave', this.resetButtonState);
+    if (!code.match(/CapsLock|Shift/)) {
+      keyDiv.addEventListener('mouseleave', this.resetButtonState);
+    }
     this.eventHandler({ code, type: event.type });
   };
 
@@ -117,10 +120,18 @@ export default class Keyboard {
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) event.preventDefault();
       pressedKeyObj.keyContainer.classList.add('active');
-      if (this.isSoundOn) this.playSound(code);
 
       if (code.match(/Shift/)) {
-        this.isShift = true;
+        if (type == 'keydown') {
+          this.isShift = true;
+        } else if (type == 'mousedown') {
+          if (!this.isShift) {
+            this.isShift = true;
+          } else {
+            this.isShift = false;
+            pressedKeyObj.keyContainer.classList.remove('active');
+          }
+        }
         this.switchUpperCase();
       }
 
@@ -171,12 +182,16 @@ export default class Keyboard {
         }
       }
     } else if (type.match(/keyup|mouseup/)) {
-      if (code != 'CapsLock')
-        pressedKeyObj.keyContainer.classList.remove('active');
+      if (this.isSoundOn) this.playSound(code);
 
-      if (code.match(/Shift/)) {
+      if (!code.match(/CapsLock|Shift/)) {
+        pressedKeyObj.keyContainer.classList.remove('active');
+      }
+
+      if (code.match(/Shift/) && type == 'keyup') {
         this.isShift = false;
         this.switchUpperCase();
+        pressedKeyObj.keyContainer.classList.remove('active');
       }
 
       if (code == 'Sound') this.toggleSound();
