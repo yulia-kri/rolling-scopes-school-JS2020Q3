@@ -9,7 +9,6 @@ languages.ru = ru;
 
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
 
 export default class Keyboard {
   constructor(keysOrder) {
@@ -19,7 +18,8 @@ export default class Keyboard {
     this.isShift = false;
     this.isKeyboardOpen = true;
     this.isSoundOn = true;
-    this.isSpeechRecording = false;
+    this.isRecording = false;
+    this.recognition = null;
   }
 
   init() {
@@ -146,16 +146,7 @@ export default class Keyboard {
       }
 
       if (code == 'Record') {
-        if (!this.isSpeechRecording) {
-          this.recognizeSpeech(pressedKeyObj);
-          document.querySelector(
-            '.keyboard__key[data-code="Record"] i'
-          ).innerText = 'mic';
-          document
-            .querySelector('[data-code="Record"]')
-            .classList.add('disabled');
-          this.isSpeechRecording = true;
-        }
+        this.toggleRecognition();
         return;
       }
 
@@ -335,22 +326,44 @@ export default class Keyboard {
     audio.play();
   }
 
-  recognizeSpeech(keyObj) {
-    recognition.interimResults = true;
+  toggleRecognition() {
+    this.isRecording = !this.isRecording;
 
-    recognition.addEventListener('result', (e) => {
-      const transcript = Array.from(e.results)
+    if (this.isRecording) {
+      this.recognition = new SpeechRecognition();
+      this.recognition.interimResults = false;
+      this.recognition.lang = `${this.keysContainer.dataset.language}`;
+      this.recognition.addEventListener('result', this.recognizeSpeech);
+      this.recognition.addEventListener('end', this.recognition.start);
+      this.recognition.start();
+      document.querySelector('.keyboard__key[data-code="Record"] i').innerText =
+        'mic';
+      document.querySelector('[data-code="Record"]').classList.add('recording');
+    } else {
+      this.recognition.removeEventListener('result', this.recognizeSpeech);
+      this.recognition.removeEventListener('end', this.recognition.start);
+      this.recognition.stop();
+      this.recognition = null;
+      document.querySelector('.keyboard__key[data-code="Record"] i').innerText =
+        'mic_none';
+      document
+        .querySelector('[data-code="Record"]')
+        .classList.remove('recording');
+    }
+  }
+
+  recognizeSpeech = (e) => {
+    const recordKey = this.keyButtons.find(
+      (keyButton) => keyButton.code === 'Record'
+    );
+    if (!recordKey) return;
+
+    const transcript =
+      Array.from(e.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
-        .join('');
+        .join('') + ' ';
 
-      if (e.results[0].isFinal) {
-        this.print(keyObj, transcript);
-      }
-    });
-
-    recognition.addEventListener('end', recognition.start);
-
-    recognition.start();
-  }
+    this.print(recordKey, transcript);
+  };
 }

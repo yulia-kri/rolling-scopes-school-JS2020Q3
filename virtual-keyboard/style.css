@@ -62,19 +62,19 @@ body {
   padding: 0 0.2rem;
   border-radius: 10px;
   box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.keyboard__key.disabled {
+.keyboard__key.recording {
   color: #ffffff;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 10s ease-in-out infinite;
 }
 
-.keyboard__key:not(.disabled):hover,
-.keyboard__key:not(.disabled).active {
-  cursor: pointer;
+.keyboard__key:not(.recording):hover,
+.keyboard__key:not(.recording).active {
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
   transform: translateY(3px);
   -webkit-transform: translateY(2px);
