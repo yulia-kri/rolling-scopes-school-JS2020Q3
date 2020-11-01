@@ -72,18 +72,6 @@ body {
   animation: gradient 10s ease-in-out infinite;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .keyboard__key:not(.disabled):hover,
 .keyboard__key:not(.disabled).active {
   cursor: pointer;
@@ -132,6 +120,11 @@ body {
 
 [data-code='Space'] {
   width: 420px;
+}
+
+[data-code='Done'],
+[data-code='Record'] {
+  width: 70px;
 }
 
 .letter {
@@ -183,10 +176,114 @@ body {
 .use-keyboard-input {
   resize: none;
   width: 60%;
+  max-width: 940px;
   margin-top: 5rem;
   height: 15rem;
   padding: 1rem;
   font-size: 1.8rem;
   letter-spacing: 0.06em;
   outline: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 939px) {
+  .use-keyboard-input {
+    width: 80%;
+  }
+
+  .keyboard {
+    grid-row-gap: 5px;
+    padding: 10px 5px;
+  }
+
+  .keyboard__key {
+    font-size: 1.6rem;
+    width: 2.6rem;
+    height: 3rem;
+    margin: 0 0.25rem;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-fn='true'] > .letter {
+    font-size: 1.4rem;
+  }
+
+  [data-code='Backspace'] {
+    width: 80px;
+  }
+
+  [data-code='Tab'],
+  [data-code='ArrowUp'],
+  [data-code='ArrowRight'],
+  [data-code='ArrowDown'],
+  [data-code='ArrowLeft'] {
+    width: 30px;
+  }
+
+  [data-code='Delete'] {
+    width: 47px;
+  }
+
+  [data-code='CapsLock'] {
+    width: 75px;
+  }
+
+  [data-code='Enter'] {
+    width: 63px;
+  }
+
+  [data-code='ShiftLeft'] {
+    width: 55px;
+  }
+
+  [data-code='ShiftRight'] {
+    width: 79px;
+  }
+
+  [data-code='Space'] {
+    width: 180px;
+  }
+
+  [data-code='Sound'],
+  [data-code='Lang'],
+  [data-code='Done'],
+  [data-code='Record'] {
+    width: 44px;
+  }
+
+  .material-icons {
+    font-size: 2rem;
+  }
+
+  .sub {
+    font-size: 1.4rem;
+    padding-left: 2px;
+  }
+
+  .sub.sub-active:not(:empty) {
+    font-size: 1.4rem;
+  }
+
+  .sub.sub-active:not(:empty) ~ .letter.sub-inactive {
+    font-size: 1.4rem;
+    padding-right: 0;
+    transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+    -moz-transform: translateX(5px);
+    -ms-transform: translateX(5px);
+    -o-transform: translateX(5px);
+  }
 }
