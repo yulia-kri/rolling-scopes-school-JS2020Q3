@@ -272,6 +272,7 @@ body {
 
   .sub.sub-active:not(:empty) ~ .letter.sub-inactive {
     font-size: 1.4rem;
+    line-height: 1.2rem;
     padding-right: 0;
     transform: translateX(5px);
     -webkit-transform: translateX(5px);
@@ -346,6 +347,10 @@ body {
   [data-code='Done'],
   [data-code='Record'] {
     width: 44px;
+  }
+
+  .sub {
+    line-height: 1.2rem;
   }
 
   .material-icons {
