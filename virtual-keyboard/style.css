@@ -202,6 +202,90 @@ body {
     width: 80%;
   }
 
+  .keyboard__key {
+    font-size: 1.8rem;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 0.4rem;
+    border-radius: 8px;
+  }
+
+  [data-fn='true'] > .letter {
+    font-size: 1.6rem;
+  }
+
+  [data-code='Backspace'] {
+    width: 120px;
+  }
+
+  [data-code='Tab'],
+  [data-code='ArrowUp'],
+  [data-code='ArrowRight'],
+  [data-code='ArrowDown'],
+  [data-code='ArrowLeft'] {
+    width: 50px;
+  }
+
+  [data-code='Delete'] {
+    width: 60px;
+  }
+
+  [data-code='CapsLock'] {
+    width: 100px;
+  }
+
+  [data-code='Enter'] {
+    width: 110px;
+  }
+
+  [data-code='ShiftLeft'] {
+    width: 80px;
+  }
+
+  [data-code='ShiftRight'] {
+    width: 120px;
+  }
+
+  [data-code='Space'] {
+    width: 290px;
+  }
+
+  [data-code='Sound'],
+  [data-code='Lang'],
+  [data-code='Done'],
+  [data-code='Record'] {
+    width: 62px;
+  }
+
+  .material-icons {
+    font-size: 2.2rem;
+  }
+
+  .sub {
+    font-size: 1.4rem;
+    padding-left: 2px;
+  }
+
+  .sub.sub-active:not(:empty) {
+    font-size: 1.4rem;
+  }
+
+  .sub.sub-active:not(:empty) ~ .letter.sub-inactive {
+    font-size: 1.4rem;
+    padding-right: 0;
+    transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+    -moz-transform: translateX(5px);
+    -ms-transform: translateX(5px);
+    -o-transform: translateX(5px);
+  }
+}
+
+@media (max-width: 768px) {
+  .use-keyboard-input {
+    width: 90%;
+  }
+
   .keyboard {
     grid-row-gap: 5px;
     padding: 10px 5px;
@@ -266,24 +350,5 @@ body {
 
   .material-icons {
     font-size: 2rem;
-  }
-
-  .sub {
-    font-size: 1.4rem;
-    padding-left: 2px;
-  }
-
-  .sub.sub-active:not(:empty) {
-    font-size: 1.4rem;
-  }
-
-  .sub.sub-active:not(:empty) ~ .letter.sub-inactive {
-    font-size: 1.4rem;
-    padding-right: 0;
-    transform: translateX(5px);
-    -webkit-transform: translateX(5px);
-    -moz-transform: translateX(5px);
-    -ms-transform: translateX(5px);
-    -o-transform: translateX(5px);
   }
 }
