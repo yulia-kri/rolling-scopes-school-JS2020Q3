@@ -1,3 +1,5 @@
+import '../styles/style.css';
+
 class Cell {
   constructor(puzzle, index) {
     this.puzzle = puzzle;
