@@ -17,25 +17,25 @@ export default class Puzzle {
     this.playingBoard = document.createElement('div');
     this.playingBoard.classList.add('game-board');
 
-    const stateField = document.createElement('div');
-    stateField.classList.add('state');
+    const state = document.createElement('div');
+    state.classList.add('state');
 
-    const playButton = document.createElement('button');
-    playButton.classList.add('play-button');
-    playButton.innerText = 'Start';
-    stateField.append(playButton);
-    playButton.addEventListener('click', updateGame);
+    const button = document.createElement('button');
+    button.classList.add('play-button');
+    button.innerText = 'Start';
+    state.append(button);
+    button.addEventListener('click', updateGame);
 
     this.displayMoves = document.createElement('div');
     this.displayMoves.innerText = 'Moves: 0';
-    stateField.append(this.displayMoves);
+    state.append(this.displayMoves);
 
     const displayTime = document.createElement('div');
     displayTime.dataset.id = 'time';
     displayTime.innerText = 'Time: 00:00';
-    stateField.append(displayTime);
+    state.append(displayTime);
 
-    document.body.append(stateField);
+    document.body.append(state);
     document.body.append(container);
     container.append(this.playingBoard);
     this.createCells();
