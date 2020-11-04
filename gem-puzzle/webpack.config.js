@@ -57,6 +57,11 @@ module.exports = {
         test: /\.(ttf|woff|woff2)$/,
         use: ['file-loader'],
       },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['eslint-loader'],
+      },
     ],
   },
 };
