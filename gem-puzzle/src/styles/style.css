@@ -80,18 +80,25 @@ body {
 
 .overlay {
   position: absolute;
-  z-index: 999;
+  clip: rect(0 0 0 0);
+  opacity: 0;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #555b6e;
-  opacity: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 80px;
   letter-spacing: 0.06em;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.overlay.active {
+  clip: auto;
+  opacity: 0.8;
+  z-index: 999;
   cursor: pointer;
-  display: none;
 }
