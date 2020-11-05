@@ -31,6 +31,7 @@ export default class Cell {
         (x === emptyX || y === emptyY) &&
         (Math.abs(x - emptyX) === 1 || Math.abs(y - emptyY) === 1)
       ) {
+        this.playSound();
         this.puzzle.numberOfMoves += 1;
         this.puzzle.displayMoves.innerText = `Moves: ${this.puzzle.numberOfMoves}`;
         this.puzzle.swapCells(currentCellIndex, emptyCellIndex, true);
@@ -104,5 +105,10 @@ export default class Cell {
 
       this.elem.style[position] = `${currentPosition}px`;
     }, frameRate);
+  }
+
+  playSound() {
+    const audioElement = new Audio('slide.mp3');
+    audioElement.play();
   }
 }
