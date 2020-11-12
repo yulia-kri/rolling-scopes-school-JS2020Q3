@@ -40,7 +40,7 @@ export function createPopup() {
       <div class="switch">
         <span data-option="on" class="switch__option active">on</span>
         <label class="switch__area">
-          <input type="checkbox" />
+          <input type="checkbox" id="sound-switcher"/>
           <span class="switch__slider"></span>
         </label>
         <span data-option="off" class="switch__option">off</span>

@@ -2,12 +2,14 @@ import '../styles/style.css';
 import Puzzle from './puzzle';
 import createPlayingBoardOverlay from './overlay';
 import { createSettingsButton, createPopup, createBlackout } from './settings';
+import { toggleSound } from './utils';
 
 const base =
   'https://raw.githubusercontent.com/irinainina/image-data/master/box/';
 const url = `${base}${getRandomInteger()}.jpg`;
 console.log(url);
-const puzzle = new Puzzle();
+
+export const puzzle = new Puzzle();
 let paused = true;
 // let gameOver = false;
 
@@ -99,3 +101,7 @@ createBlackout();
 createPlayingBoardOverlay();
 createSettingsButton();
 createPopup();
+
+const soundSwitcher = document.getElementById('sound-switcher');
+
+soundSwitcher.addEventListener('change', toggleSound);

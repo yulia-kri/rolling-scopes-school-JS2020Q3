@@ -7,6 +7,7 @@ export default class Puzzle {
     this.displayMoves = null;
     this.dimension = dimension;
     this.imageSrc = image;
+    this.isSoundOn = true;
     this.width = width;
     this.cells = [];
     this.numberOfMoves = 0;

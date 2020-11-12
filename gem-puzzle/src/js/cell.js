@@ -84,7 +84,9 @@ export default class Cell {
       (x === emptyX || y === emptyY) &&
       (Math.abs(x - emptyX) === 1 || Math.abs(y - emptyY) === 1)
     ) {
-      this.playSound();
+      if (this.puzzle.isSoundOn) {
+        this.playSound();
+      }
       this.puzzle.numberOfMoves += 1;
       this.puzzle.displayMoves.innerText = `Moves: ${this.puzzle.numberOfMoves}`;
       if (event.type === 'click') {
