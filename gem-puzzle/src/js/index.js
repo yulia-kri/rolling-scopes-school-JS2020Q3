@@ -1,15 +1,16 @@
 import '../styles/style.css';
 import Puzzle from './puzzle';
-import createPlayingBoardOverlay from './overlay';
 import { createSettingsButton, createPopup, createBlackout } from './settings';
 import { toggleSound } from './utils';
+
+export const page = {};
 
 const base =
   'https://raw.githubusercontent.com/irinainina/image-data/master/box/';
 const url = `${base}${getRandomInteger()}.jpg`;
 console.log(url);
 
-export const puzzle = new Puzzle();
+page.puzzle = new Puzzle(3, url);
 let paused = true;
 // let gameOver = false;
 
@@ -95,13 +96,22 @@ export function showPopup() {
   }
 }
 
-puzzle.init();
+page.puzzle.init();
 displayTime();
 createBlackout();
-createPlayingBoardOverlay();
 createSettingsButton();
 createPopup();
 
+const newGame = document.getElementById('start-game');
 const soundSwitcher = document.getElementById('sound-switcher');
 
+newGame.addEventListener('click', startGame);
 soundSwitcher.addEventListener('change', toggleSound);
+
+function startGame() {
+  console.log('start new game');
+  page.puzzle.destroy();
+  page.puzzle = null;
+  page.puzzle = new Puzzle(4, url);
+  page.puzzle.init();
+}

@@ -15,7 +15,7 @@ export function createPopup() {
   const popup = document.createElement('div');
   popup.classList.add('popup');
   popup.innerHTML = `
-    <div>Start new game</div>
+    <div id="start-game">Start new game</div>
     <div>
       <label for="field-size">Field size:</label>
       <select name="dimension" id="field-size" class="dimension-select">

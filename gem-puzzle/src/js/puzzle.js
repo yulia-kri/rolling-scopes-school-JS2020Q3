@@ -3,6 +3,7 @@ import { updateGame } from './index';
 
 export default class Puzzle {
   constructor(dimension = 4, image, width = 400) {
+    this.container = null;
     this.playingBoard = null;
     this.displayMoves = null;
     this.dimension = dimension;
@@ -14,33 +15,39 @@ export default class Puzzle {
   }
 
   init() {
-    const container = document.createElement('div');
-    container.classList.add('container');
+    this.container = document.createElement('div');
+    this.container.classList.add('container');
 
     this.playingBoard = document.createElement('div');
     this.playingBoard.classList.add('game-board');
 
-    const state = document.createElement('div');
-    state.classList.add('state');
+    const overlay = document.createElement('div');
+    overlay.classList.add('playing-board__overlay', 'visible');
+    overlay.innerText = 'Play';
+    overlay.addEventListener('click', updateGame);
+
+    this.state = document.createElement('div');
+    this.state.classList.add('state');
 
     const button = document.createElement('button');
     button.classList.add('play-button');
     button.innerText = 'Start';
-    state.append(button);
+    this.state.append(button);
     button.addEventListener('click', updateGame);
 
     this.displayMoves = document.createElement('div');
     this.displayMoves.innerText = 'Moves: 0';
-    state.append(this.displayMoves);
+    this.state.append(this.displayMoves);
 
     const displayTime = document.createElement('div');
     displayTime.dataset.id = 'time';
     displayTime.innerText = 'Time: 00:00';
-    state.append(displayTime);
+    this.state.append(displayTime);
 
-    document.body.append(state);
-    document.body.append(container);
-    container.append(this.playingBoard);
+    document.body.append(this.state);
+    document.body.append(this.container);
+    this.container.prepend(overlay);
+    this.container.append(this.playingBoard);
     this.createCells();
   }
 
@@ -88,5 +95,10 @@ export default class Puzzle {
 
   findDraggingCell() {
     return this.cells.findIndex((cell) => cell.draggingCell);
+  }
+
+  destroy() {
+    this.container.parentNode.removeChild(this.container);
+    this.state.parentNode.removeChild(this.state);
   }
 }
