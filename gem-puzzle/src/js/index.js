@@ -3,12 +3,23 @@ import Puzzle from './puzzle';
 import createPlayingBoardOverlay from './overlay';
 import { createSettingsButton, createPopup, createBlackout } from './settings';
 
+const base =
+  'https://raw.githubusercontent.com/irinainina/image-data/master/box/';
+const url = `${base}${getRandomInteger()}.jpg`;
+console.log(url);
 const puzzle = new Puzzle();
 let paused = true;
 // let gameOver = false;
 
 let min = 0;
 let sec = 0;
+
+// function setWidth() {
+//   console.log('width', document.documentElement.clientWidth);
+//   console.log('height', document.documentElement.clientHeight);
+// }
+
+// setWidth();
 
 function displayTime() {
   const timer = document.querySelector('[data-id="time"]');
@@ -36,6 +47,10 @@ function displayTime() {
 
 function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
+}
+
+function getRandomInteger() {
+  return Math.floor(Math.random() * 150) + 1;
 }
 
 export function updateGame() {

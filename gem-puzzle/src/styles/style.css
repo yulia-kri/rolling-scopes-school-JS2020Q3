@@ -61,8 +61,8 @@ body {
   background-color: #dde5b6;
 }
 
-.cell {
-  border: 5px solid #dde5b6;
+.fill {
+  border: 1px solid #dde5b6;
   border-radius: 10px;
   background: #81b29a;
   display: flex;
@@ -76,6 +76,20 @@ body {
 .empty {
   position: absolute;
   background: none;
+  border: none;
+}
+
+.hold {
+  border: 3px solid #ccc;
+}
+
+.invisible {
+  display: none;
+}
+
+.hovered {
+  border: 3px dashed white;
+  border-radius: 10px;
 }
 
 .playing-board__overlay {
@@ -94,6 +108,7 @@ body {
   letter-spacing: 0.06em;
   border-radius: 10px;
   transition: all 0.5s ease-in-out;
+  pointer-events: none;
 }
 
 .playing-board__overlay.visible {
@@ -101,6 +116,7 @@ body {
   opacity: 0.8;
   z-index: 10;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .settings-button {
@@ -141,6 +157,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 15px;
+  pointer-events: none;
 }
 
 .blackout {
@@ -154,11 +171,13 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   transition: all 0.2s ease-out;
+  pointer-events: none;
 }
 
 .visible {
   visibility: initial;
   opacity: 1;
+  pointer-events: all;
 }
 
 .dimension-select {

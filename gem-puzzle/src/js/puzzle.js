@@ -2,10 +2,12 @@ import Cell from './cell';
 import { updateGame } from './index';
 
 export default class Puzzle {
-  constructor(dimension = 4) {
+  constructor(dimension = 4, image, width = 400) {
     this.playingBoard = null;
     this.displayMoves = null;
     this.dimension = dimension;
+    this.imageSrc = image;
+    this.width = width;
     this.cells = [];
     this.numberOfMoves = 0;
   }
@@ -81,5 +83,9 @@ export default class Puzzle {
 
   findEmpty() {
     return this.cells.findIndex((cell) => cell.isEmpty);
+  }
+
+  findDraggingCell() {
+    return this.cells.findIndex((cell) => cell.draggingCell);
   }
 }

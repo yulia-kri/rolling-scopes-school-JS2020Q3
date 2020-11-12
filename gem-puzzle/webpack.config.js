@@ -30,7 +30,7 @@ module.exports = {
           to: path.resolve(__dirname, 'dist'),
         },
         {
-          from: path.resolve(__dirname, 'src/assets/audio/slide.mp3'),
+          from: path.resolve(__dirname, 'src/assets/audio'),
           to: path.resolve(__dirname, 'dist'),
         },
       ],
