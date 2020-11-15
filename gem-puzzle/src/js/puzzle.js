@@ -2,12 +2,12 @@ import Cell from './cell';
 import { updateGame } from './index';
 
 export default class Puzzle {
-  constructor(dimension = 4, image, width = 400) {
+  constructor(config, width = 400) {
     this.container = null;
     this.playingBoard = null;
     this.displayMoves = null;
-    this.dimension = dimension;
-    this.imageSrc = image;
+    this.dimension = config.dimension || 4;
+    this.imageSrc = config.image;
     this.isSoundOn = true;
     this.width = width;
     this.cells = [];

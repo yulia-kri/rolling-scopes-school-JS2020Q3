@@ -101,7 +101,7 @@ export default class Cell {
     this.elem.classList.add('fill');
     this.elem.setAttribute('draggable', true);
 
-    if (typeof this.puzzle.imageSrc === 'undefined') {
+    if (this.puzzle.imageSrc == undefined) {
       this.elem.innerText = this.index + 1;
     } else {
       const { left, top } = this.getPositionFromIndex(this.index);

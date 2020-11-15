@@ -27,11 +27,11 @@ export function createPopup() {
     <div class="mode">
       Mode:
       <label>
-        <input type="radio" name="mode" checked />
+        <input type="radio" name="mode" data-mode value="num" checked />
         <span>Numbers</span>
       </label>
       <label>
-        <input type="radio" name="mode" />
+        <input type="radio" name="mode" value="img" data-mode/>
         <span>Picture</span>
       </label>
     </div>

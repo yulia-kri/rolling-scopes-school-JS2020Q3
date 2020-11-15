@@ -1,28 +1,16 @@
 import '../styles/style.css';
 import Puzzle from './puzzle';
 import { createSettingsButton, createPopup, createBlackout } from './settings';
-import { toggleSound } from './utils';
+import { toggleSound, getRandomImage } from './utils';
 
 export const page = {};
 
-const base =
-  'https://raw.githubusercontent.com/irinainina/image-data/master/box/';
-const url = `${base}${getRandomInteger()}.jpg`;
-console.log(url);
-
-page.puzzle = new Puzzle(3, url);
+const config = {};
+page.puzzle = new Puzzle(config);
 let paused = true;
-// let gameOver = false;
 
 let min = 0;
 let sec = 0;
-
-// function setWidth() {
-//   console.log('width', document.documentElement.clientWidth);
-//   console.log('height', document.documentElement.clientHeight);
-// }
-
-// setWidth();
 
 function displayTime() {
   const timer = document.querySelector('[data-id="time"]');
@@ -50,10 +38,6 @@ function displayTime() {
 
 function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
-}
-
-function getRandomInteger() {
-  return Math.floor(Math.random() * 150) + 1;
 }
 
 export function updateGame() {
@@ -103,15 +87,41 @@ createSettingsButton();
 createPopup();
 
 const newGame = document.getElementById('start-game');
+const dimentionSwitcher = document.getElementById('field-size');
+const modeSwitchers = document.querySelectorAll('[data-mode]');
 const soundSwitcher = document.getElementById('sound-switcher');
 
 newGame.addEventListener('click', startGame);
+dimentionSwitcher.addEventListener('change', updateConfig);
+modeSwitchers.forEach((switcher) =>
+  switcher.addEventListener('change', updateConfig)
+);
 soundSwitcher.addEventListener('change', toggleSound);
 
+function updateConfig(e) {
+  const change = e.target.value;
+  switch (change) {
+    case 'num':
+      config.image = null;
+      break;
+    case 'img':
+      config.image = getRandomImage();
+      break;
+    default:
+      config.dimension = change;
+  }
+
+  startGame();
+}
+
 function startGame() {
-  console.log('start new game');
   page.puzzle.destroy();
   page.puzzle = null;
-  page.puzzle = new Puzzle(4, url);
+  if (config.image != undefined) {
+    config.image = getRandomImage();
+  }
+  page.puzzle = new Puzzle(config);
   page.puzzle.init();
+  soundSwitcher.checked = false;
+  toggleSound.apply(soundSwitcher);
 }
