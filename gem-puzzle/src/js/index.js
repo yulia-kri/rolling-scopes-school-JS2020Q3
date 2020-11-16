@@ -8,7 +8,6 @@ export const page = {};
 const config = {};
 page.puzzle = new Puzzle(config);
 let paused = true;
-let order = [];
 
 let min = 0;
 let sec = 0;
