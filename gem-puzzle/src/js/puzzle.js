@@ -1,5 +1,5 @@
 import Cell from './cell';
-import { updateGame } from './index';
+import { updateGame, startGame } from './index';
 
 export default class Puzzle {
   constructor(config) {
@@ -73,9 +73,14 @@ export default class Puzzle {
     [this.cells[i], this.cells[j]] = [this.cells[j], this.cells[i]];
 
     if (this.checkBoard()) {
-      alert(
-        `Ура! Вы решили головоломку за ${this.displayTime.innerText} и ${this.numberOfMoves} ходов`
-      );
+      setTimeout(() => {
+        alert(
+          `Ура! Вы решили головоломку за ${
+            this.displayTime.innerText.split(' ')[1]
+          } и ${this.numberOfMoves} ходов`
+        );
+        startGame();
+      }, 500);
     }
   }
 

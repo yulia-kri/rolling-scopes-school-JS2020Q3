@@ -114,7 +114,7 @@ function updateConfig(e) {
   startGame();
 }
 
-function startGame() {
+export function startGame() {
   page.puzzle.destroy();
   page.puzzle = null;
   if (config.image != undefined) {
@@ -122,6 +122,9 @@ function startGame() {
   }
   page.puzzle = new Puzzle(config);
   page.puzzle.init();
+  paused = true;
+  min = 0;
+  sec = 0;
   soundSwitcher.checked = false;
   toggleSound.apply(soundSwitcher);
 }
