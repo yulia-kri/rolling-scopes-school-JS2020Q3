@@ -8,6 +8,7 @@ export const page = {};
 const config = {};
 page.puzzle = new Puzzle(config);
 let paused = true;
+let order = [];
 
 let min = 0;
 let sec = 0;
@@ -87,13 +88,11 @@ createSettingsButton();
 createPopup();
 
 const newGame = document.getElementById('start-game');
-const saveGame = document.getElementById('save-game');
 const dimentionSwitcher = document.getElementById('field-size');
 const modeSwitchers = document.querySelectorAll('[data-mode]');
 const soundSwitcher = document.getElementById('sound-switcher');
 
 newGame.addEventListener('click', startGame);
-saveGame.addEventListener('click', save);
 dimentionSwitcher.addEventListener('change', updateConfig);
 modeSwitchers.forEach((switcher) =>
   switcher.addEventListener('change', updateConfig)
@@ -129,9 +128,4 @@ export function startGame() {
   sec = 0;
   soundSwitcher.checked = false;
   toggleSound.apply(soundSwitcher);
-}
-
-function save() {
-  console.log('save game');
-  console.log(config);
 }

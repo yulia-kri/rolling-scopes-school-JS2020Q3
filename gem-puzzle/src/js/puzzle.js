@@ -86,16 +86,7 @@ export default class Puzzle {
 
   checkBoard() {
     for (let i = 0; i < this.cells.length; i++) {
-      console.log(this.dimension, i, this.cells[i].index);
       if (i != this.cells[i].index) {
-        if (
-          this.dimension === 3 &&
-          i === 6 &&
-          this.cells[i].index === 8 &&
-          this.cells[i + 1].index === i + 1
-        ) {
-          return true;
-        }
         return false;
       }
     }
