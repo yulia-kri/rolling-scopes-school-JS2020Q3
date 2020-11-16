@@ -193,6 +193,10 @@ body {
   letter-spacing: 0.06em;
 }
 
+.dimension-select:hover {
+  cursor: pointer;
+}
+
 .mode input {
   position: absolute;
   left: -9999px;
@@ -306,4 +310,9 @@ input:checked + .switch__slider:before {
   -webkit-transform: translateX(30px);
   -ms-transform: translateX(30px);
   transform: translateX(30px);
+}
+
+#start-game:hover {
+  cursor: pointer;
+  color: #ffb703;
 }

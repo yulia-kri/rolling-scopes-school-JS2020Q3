@@ -2,14 +2,15 @@ import Cell from './cell';
 import { updateGame } from './index';
 
 export default class Puzzle {
-  constructor(config, width = 400) {
+  constructor(config) {
     this.container = null;
     this.playingBoard = null;
+    this.displayMoves = null;
     this.displayMoves = null;
     this.dimension = config.dimension || 4;
     this.imageSrc = config.image;
     this.isSoundOn = true;
-    this.width = width;
+    this.width = 400;
     this.cells = [];
     this.numberOfMoves = 0;
   }
@@ -39,10 +40,10 @@ export default class Puzzle {
     this.displayMoves.innerText = 'Moves: 0';
     this.state.append(this.displayMoves);
 
-    const displayTime = document.createElement('div');
-    displayTime.dataset.id = 'time';
-    displayTime.innerText = 'Time: 00:00';
-    this.state.append(displayTime);
+    this.displayTime = document.createElement('div');
+    this.displayTime.dataset.id = 'time';
+    this.displayTime.innerText = 'Time: 00:00';
+    this.state.append(this.displayTime);
 
     document.body.append(this.state);
     document.body.append(this.container);
@@ -72,7 +73,9 @@ export default class Puzzle {
     [this.cells[i], this.cells[j]] = [this.cells[j], this.cells[i]];
 
     if (this.checkBoard()) {
-      console.log('you win!');
+      alert(
+        `Ура! Вы решили головоломку за ${this.displayTime.innerText} и ${this.numberOfMoves} ходов`
+      );
     }
   }
 
