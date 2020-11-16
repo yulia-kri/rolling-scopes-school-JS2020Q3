@@ -46,6 +46,7 @@ export function createPopup() {
         <span data-option="off" class="switch__option">off</span>
       </div>
     </div>
+    <div id="save-game">Save game</div>
     `;
   document.body.prepend(popup);
 }

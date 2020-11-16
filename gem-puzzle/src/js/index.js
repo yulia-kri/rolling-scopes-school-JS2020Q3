@@ -87,11 +87,13 @@ createSettingsButton();
 createPopup();
 
 const newGame = document.getElementById('start-game');
+const saveGame = document.getElementById('save-game');
 const dimentionSwitcher = document.getElementById('field-size');
 const modeSwitchers = document.querySelectorAll('[data-mode]');
 const soundSwitcher = document.getElementById('sound-switcher');
 
 newGame.addEventListener('click', startGame);
+saveGame.addEventListener('click', save);
 dimentionSwitcher.addEventListener('change', updateConfig);
 modeSwitchers.forEach((switcher) =>
   switcher.addEventListener('change', updateConfig)
@@ -114,7 +116,7 @@ function updateConfig(e) {
   startGame();
 }
 
-function startGame() {
+export function startGame() {
   page.puzzle.destroy();
   page.puzzle = null;
   if (config.image != undefined) {
@@ -122,6 +124,14 @@ function startGame() {
   }
   page.puzzle = new Puzzle(config);
   page.puzzle.init();
+  paused = true;
+  min = 0;
+  sec = 0;
   soundSwitcher.checked = false;
   toggleSound.apply(soundSwitcher);
+}
+
+function save() {
+  console.log('save game');
+  console.log(config);
 }
