@@ -1,0 +1,16 @@
+{
+  "name": "rs-css",
+  "version": "1.0.0",
+  "description": "simulator for learning css selectors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css",
+    "selectors",
+    "game"
+  ],
+  "author": "Yuliya Kryvarot",
+  "license": "ISC"
+}
