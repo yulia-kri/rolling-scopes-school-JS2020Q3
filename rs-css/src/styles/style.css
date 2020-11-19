@@ -11,10 +11,8 @@
   --color-light: #ffffff;
   --color-dark-s: #4c4c4c;
   --color-dark-m: #252323;
-  /*   --color-primary: #120c6e;
-  --color-primary-dark: #090d59; */
-  --color-primary-dark: #200062;
   --color-primary: #2f008c;
+  --color-primary-dark: #200062;
   --color-accent: #ae0076;
 }
 
@@ -203,7 +201,7 @@ h4 {
 }
 
 .html {
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem;
 }
 
 .html__markup {
