@@ -11,8 +11,10 @@
   --color-light: #ffffff;
   --color-dark-s: #4c4c4c;
   --color-dark-m: #252323;
-  --color-primary: #200062;
-  --color-primary-light: #2f008c;
+  /*   --color-primary: #120c6e;
+  --color-primary-dark: #090d59; */
+  --color-primary-dark: #200062;
+  --color-primary: #2f008c;
   --color-accent: #ae0076;
 }
 
@@ -52,21 +54,23 @@ h4 {
 }
 
 .left-col {
-  width: 70%;
-  background: var(--color-primary-light);
+  width: calc(100% - 360px);
+  background: var(--color-primary);
   color: var(--color-light);
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
   padding: 2rem;
+  overflow-y: scroll;
 }
 
 .right-col {
-  width: 30%;
-  background: var(--color-primary);
+  width: 36rem;
+  background: var(--color-primary-dark);
   color: var(--color-light);
-  padding: 1rem 2rem 0;
+  padding: 1rem 2rem;
+  padding-right: 0;
 }
 
 .level-list {
@@ -116,15 +120,10 @@ h4 {
   border-width: 0 3px 3px 0;
 }
 
-.task {
-  align-self: start;
-  text-align: justify;
-}
-
 .hint {
   outline: none;
   border: none;
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   color: var(--color-light);
   border-radius: 20px;
   font-family: 'Lato', sans-serif;
@@ -135,13 +134,22 @@ h4 {
 .hint:hover {
   cursor: pointer;
   background: var(--color-accent);
-  box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.5);
 }
 
 .game-wrapper {
-  background-color: #4cbb4a;
   width: 100%;
-  height: 300px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  column-gap: 1%;
+  height: 30rem;
+}
+
+.game-wrapper * {
+  flex: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .editor {
@@ -151,7 +159,7 @@ h4 {
 
 .editor__panel {
   flex: 1;
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   padding: 1rem;
 }
 
@@ -201,4 +209,67 @@ h4 {
 .html__markup {
   color: var(--color-light);
   font-size: 1.6rem;
+}
+
+/* Game styles */
+
+.game-wrapper sun {
+  flex-grow: 4;
+  background-image: url(../assets/images/Sun.png);
+}
+
+.game-wrapper mercury,
+.game-wrapper .mercury {
+  flex-grow: 0.5;
+  background-image: url(../assets/images/Mercury.png);
+}
+
+.game-wrapper venus,
+.game-wrapper .venus {
+  background-image: url(../assets/images/Venus.png);
+}
+
+.game-wrapper earth,
+.game-wrapper .earth {
+  flex-grow: 1.2;
+  background-image: url(../assets/images/Earth.png);
+}
+
+.game-wrapper mars,
+.game-wrapper .mars {
+  flex-grow: 0.8;
+  background-image: url(../assets/images/Mars.png);
+}
+
+.game-wrapper jupiter,
+.game-wrapper .jupiter {
+  flex-grow: 2.2;
+  background-image: url(../assets/images/Jupiter.png);
+}
+
+.game-wrapper saturn,
+.game-wrapper .saturn {
+  flex-grow: 2.4;
+  background-image: url(../assets/images/Saturn.png);
+}
+
+.game-wrapper uranus,
+.game-wrapper .uranus {
+  flex-grow: 2;
+  background-image: url(../assets/images/Uranus.png);
+}
+
+.game-wrapper neptune,
+.game-wrapper .neptune {
+  flex-grow: 1.2;
+  background-image: url(../assets/images/Neptune.png);
+}
+
+.game-wrapper moon {
+  flex-grow: 0.4;
+  background-image: url(../assets/images/Moon.png);
+}
+
+.game-wrapper comet {
+  background-image: url(../assets/images/Comet.png);
 }
