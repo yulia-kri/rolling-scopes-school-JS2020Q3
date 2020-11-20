@@ -16,3 +16,23 @@ function convertHTML(str) {
   newStr = newStr.replace(/>/g, '&gt;');
   return newStr;
 }
+
+const checkAnswer = (level, answer) => levels[level].answer === answer;
+
+export function submit(e, level) {
+  e.preventDefault();
+
+  const input = e.target.elements[0];
+  const { value } = input;
+  input.value = '';
+
+  checkAnswer(level, value) ? levelCompleted() : wrongAnswer();
+}
+
+function levelCompleted() {
+  console.log('Hurray!');
+}
+
+function wrongAnswer() {
+  console.log('Wrong!');
+}
