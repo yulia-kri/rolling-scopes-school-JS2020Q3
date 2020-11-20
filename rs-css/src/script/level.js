@@ -34,5 +34,9 @@ function levelCompleted() {
 }
 
 function wrongAnswer() {
-  console.log('Wrong!');
+  const editor = document.querySelector('.editor');
+  editor.style.animation = 'shake 0.7s ease-in-out';
+  setTimeout(() => {
+    editor.style.animation = '';
+  }, 700);
 }
