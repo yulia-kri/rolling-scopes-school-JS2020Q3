@@ -18,7 +18,9 @@ function convertHTML(str) {
   return newStr;
 }
 
-const select = (elem) => document.querySelector(elem);
+const selectAll = (selector) =>
+  document.querySelector('.game-wrapper').querySelectorAll(selector);
+const select = (selector) => document.querySelector(selector);
 
 const checkAnswer = (level, answer) => levels[level].answer === answer;
 
@@ -29,17 +31,15 @@ export function submit(e, level) {
   const { value } = input;
   input.value = '';
 
-  checkAnswer(level, value) ? levelCompleted(level) : wrongAnswer();
+  checkAnswer(level, value) ? levelCompleted(level, value) : wrongAnswer();
 }
 
-function levelCompleted(level) {
-  const DOMelements = [];
-  const elemArr = levels[level].result;
+function levelCompleted(level, selector) {
   const checkmark = select(`[data-level='${level}']`).querySelector(
     '.level__checkmark'
   );
 
-  elemArr.map((obj) => DOMelements.push(select(obj)));
+  const DOMelements = selectAll(selector);
   DOMelements.forEach(
     (elem) => (elem.style.animation = 'slide-up 0.5s ease-in-out forwards')
   );
