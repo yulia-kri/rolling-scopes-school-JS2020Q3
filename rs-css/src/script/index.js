@@ -21,3 +21,8 @@ levels.addEventListener('click', (e) => {
 form.addEventListener('submit', (e) => {
   submit(e, currentLevel);
 });
+
+export function nextLevel() {
+  currentLevel += 1;
+  displayLevel(currentLevel);
+}

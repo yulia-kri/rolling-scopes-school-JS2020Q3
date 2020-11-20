@@ -295,6 +295,12 @@ galaxy {
   display: flex;
 }
 
+@keyframes slide-up {
+  100% {
+    transform: translateY(-1000px);
+  }
+}
+
 @keyframes shake {
   0%,
   20%,
