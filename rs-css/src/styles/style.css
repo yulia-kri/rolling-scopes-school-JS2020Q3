@@ -11,8 +11,7 @@
   --color-light: #ffffff;
   --color-dark-s: #4c4c4c;
   --color-dark-m: #252323;
-  --color-primary: #2f008c;
-  --color-primary-dark: #200062;
+  --color-primary: #001845;
   --color-accent: #ae0076;
 }
 
@@ -22,6 +21,7 @@ body {
   display: flex;
   font-family: 'Lato', sans-serif;
   position: relative;
+  filter: contrast(120%);
 }
 
 a {
@@ -53,8 +53,11 @@ h4 {
 }
 
 .left-col {
-  width: calc(100% - 360px);
-  background: var(--color-primary);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 35rem;
+  left: 0;
   color: var(--color-light);
   display: flex;
   flex-direction: column;
@@ -65,8 +68,8 @@ h4 {
 }
 
 .right-col {
-  width: 36rem;
-  background: var(--color-primary-dark);
+  width: 46rem;
+  background: var(--color-primary);
   color: var(--color-light);
   padding: 1rem 2rem;
   padding-right: 0;
@@ -122,7 +125,7 @@ h4 {
 .hint {
   outline: none;
   border: none;
-  background: var(--color-primary-dark);
+  background: var(--color-primary);
   color: var(--color-light);
   border-radius: 20px;
   font-family: 'Lato', sans-serif;
@@ -158,7 +161,7 @@ h4 {
 
 .editor__panel {
   flex: 1;
-  background: var(--color-primary-dark);
+  background: var(--color-primary);
   padding: 1rem;
 }
 
@@ -356,6 +359,28 @@ planet:nth-of-type(8) {
 galaxy {
   background-image: url(../assets/images/Galaxy-1.png);
   display: flex;
+}
+
+/* Background animation */
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    1600px at 70% 120%,
+    rgba(33, 39, 80, 1) 10%,
+    #020409 100%
+  );
+}
+
+.content {
+  width: inherit;
+  height: inherit;
+}
+
+#universe {
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes slide-up {

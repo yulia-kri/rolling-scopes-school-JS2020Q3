@@ -1,4 +1,5 @@
 import '../styles/style.css';
+import './animation';
 import { displayLevel, submit } from '../script/level';
 
 let currentLevel = 0;
