@@ -7,7 +7,7 @@ export function toggleSound() {
   const optionON = document.querySelector('[data-option="on"]');
   const optionOFF = document.querySelector('[data-option="off"]');
 
-  if (this.checked !== true) {
+  if (!this.checked) {
     page.puzzle.isSoundOn = true;
     optionON.classList.add('active');
     optionOFF.classList.remove('active');

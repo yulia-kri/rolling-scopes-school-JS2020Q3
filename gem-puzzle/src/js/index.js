@@ -9,17 +9,20 @@ const config = {};
 page.puzzle = new Puzzle(config);
 let paused = true;
 
+const lastSecInMin = 59;
+const lastMinInHour = 59;
+
 let min = 0;
 let sec = 0;
 
 function displayTime() {
   const timer = document.querySelector('[data-id="time"]');
   if (!paused) {
-    if (min === 59 && sec === 59) {
+    if (min === lastMinInHour && sec === lastSecInMin) {
       min = 0;
       sec = 0;
     }
-    if (sec === 59) {
+    if (sec === lastSecInMin) {
       min += 1;
       sec = 0;
     } else {
@@ -27,8 +30,8 @@ function displayTime() {
     }
     timer.innerText = `Time: ${addZero(min)}:${addZero(sec)}`;
   } else {
-    let currentTime = timer.innerText;
-    let arr = currentTime.split(':');
+    const currentTime = timer.innerText;
+    const arr = currentTime.split(':');
     min = parseInt(arr[1]);
     sec = parseInt(arr[2]);
     timer.innerText = `Time: ${addZero(min)}:${addZero(sec)}`;
@@ -45,7 +48,7 @@ export function updateGame() {
   const overlay = document.querySelector('.playing-board__overlay');
 
   paused = !paused;
-  if (paused === true) {
+  if (paused) {
     playButton.innerText = 'Start';
     overlay.classList.add('visible');
   } else {
@@ -66,14 +69,14 @@ export function showPopup() {
   ) {
     popup.classList.remove('visible');
     blackout.classList.remove('visible');
-    if (paused === true && !overlay.classList.contains('visible')) {
+    if (paused && !overlay.classList.contains('visible')) {
       paused = false;
       playButton.innerText = 'Pause';
     }
   } else {
     popup.classList.add('visible');
     blackout.classList.add('visible');
-    if (paused === false) {
+    if (!paused) {
       paused = true;
       playButton.innerText = 'Paused';
     }
