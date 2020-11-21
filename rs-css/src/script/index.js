@@ -5,6 +5,8 @@ let currentLevel = 0;
 
 const levels = document.querySelector('.level-list');
 const form = document.querySelector('.css-form');
+const menuBtn = document.querySelector('.menu-btn');
+const menu = document.querySelector('.right-col');
 
 window.addEventListener('DOMContentLoaded', () => {
   displayLevel(currentLevel);
@@ -13,9 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
 levels.addEventListener('click', (e) => {
   const levelElem = e.target.closest('.level-list__level');
   if (!levelElem) return;
-  currentLevel = levelElem.dataset.level;
-  console.log('current level is', currentLevel);
-  displayLevel(currentLevel);
+  const level = levelElem.dataset.level;
+  displayLevel(level);
+  currentLevel = level;
 });
 
 form.addEventListener('submit', (e) => {
@@ -23,6 +25,11 @@ form.addEventListener('submit', (e) => {
 });
 
 export function nextLevel() {
-  currentLevel += 1;
+  currentLevel++;
   displayLevel(currentLevel);
 }
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('open');
+  menu.classList.toggle('open');
+});

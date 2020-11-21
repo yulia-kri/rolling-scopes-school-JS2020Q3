@@ -21,6 +21,7 @@ body {
   height: 100vh;
   display: flex;
   font-family: 'Lato', sans-serif;
+  position: relative;
 }
 
 a {
@@ -207,6 +208,68 @@ h4 {
 .html__markup {
   color: var(--color-light);
   font-size: 1.6rem;
+}
+
+.menu-btn {
+  display: none;
+  width: 3rem;
+  height: 2.2rem;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  z-index: 999;
+}
+
+.menu-btn__burger,
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  width: 3rem;
+  height: 0.2rem;
+  background: var(--color-accent);
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  content: '';
+  position: absolute;
+}
+
+.menu-btn__burger::before {
+  transform: translateY(-1rem);
+}
+
+.menu-btn__burger::after {
+  transform: translateY(1rem);
+}
+
+.menu-btn.open {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 1020px) {
+  .left-col {
+    width: 100%;
+  }
+
+  .right-col {
+    position: fixed;
+    right: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+    z-index: 10;
+  }
+
+  .right-col.open {
+    transform: translateX(0);
+  }
+
+  .menu-btn {
+    display: flex;
+  }
 }
 
 /* Game styles */
