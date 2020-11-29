@@ -1,4 +1,4 @@
-import { levels } from './levels';
+import { levels } from './levels.data';
 import { nextLevel } from './index';
 
 const displayTask = document.querySelector('.task');
@@ -14,6 +14,7 @@ export function displayLevel(level) {
   const content = levels[level];
   displayTask.innerText = content.task;
   displayExample.innerHTML = content.html;
+  displayHTML.innerText = '';
   convertHTML(content.html, displayHTML);
 
   Array.from(displayExample.children).forEach((elem, i) => {
@@ -46,12 +47,12 @@ export function displayLevel(level) {
     });
   });
 
-  const DOMelements = selectAll(content.answer);
+  const DOMelements = selectAll(content.selectors[0]);
   addAnimation(DOMelements, spinAnimation);
 }
 
 export function getHint(level) {
-  const { answer } = levels[level];
+  const answer = levels[level].selectors[0];
   animateTyping(answer, level);
 }
 
@@ -88,7 +89,8 @@ const selectAll = (selector) =>
   document.querySelector('.example-container').querySelectorAll(selector);
 const select = (selector) => document.querySelector(selector);
 
-const checkAnswer = (level, answer) => levels[level].answer === answer;
+const checkAnswer = (level, answer) =>
+  levels[level].selectors.find((selector) => selector === answer);
 
 export function submit(e, level) {
   e.preventDefault();
