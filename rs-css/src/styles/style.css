@@ -288,63 +288,52 @@ h4 {
 
 .example-container sun {
   height: 100%;
-  flex-grow: 4;
+  flex-grow: 3.5;
   background-image: url(../assets/images/Sun.png);
 }
 
-.example-container mercury,
-.example-container .mercury,
 planet:nth-of-type(1) {
-  flex-grow: 0.5;
+  flex-grow: 0.6;
   background-image: url(../assets/images/Mercury.png);
 }
 
-.example-container venus,
-.example-container .venus,
 planet:nth-of-type(2) {
   background-image: url(../assets/images/Venus.png);
 }
 
-.example-container earth,
-.example-container .earth,
 planet:nth-of-type(3) {
   flex-grow: 1.2;
   background-image: url(../assets/images/Earth.png);
 }
 
-.example-container mars,
-.example-container .mars,
 planet:nth-of-type(4) {
   flex-grow: 0.8;
   background-image: url(../assets/images/Mars.png);
 }
 
-.example-container jupiter,
-.example-container .jupiter,
 planet:nth-of-type(5) {
   flex-grow: 2.2;
   background-image: url(../assets/images/Jupiter.png);
 }
 
-.example-container saturn,
-.example-container .saturn,
 planet:nth-of-type(6) {
   flex-grow: 2.4;
   background-image: url(../assets/images/Saturn.png);
 }
 
-.example-container uranus,
-.example-container .uranus,
 planet:nth-of-type(7) {
   flex-grow: 2;
   background-image: url(../assets/images/Uranus.png);
 }
 
-.example-container neptune,
-.example-container .neptune,
 planet:nth-of-type(8) {
   flex-grow: 1.2;
   background-image: url(../assets/images/Neptune.png);
+}
+
+.example-container pluto {
+  flex-grow: 0.6;
+  background-image: url(../assets/images/Pluto.png);
 }
 
 .example-container moon {
@@ -352,23 +341,29 @@ planet:nth-of-type(8) {
   background-image: url(../assets/images/Moon.png);
 }
 
-.example-container comet {
+comet:first-of-type {
   background-image: url(../assets/images/Comet.png);
 }
 
-.example-container comet:nth-of-type(2) {
+comet:nth-of-type(2) {
   flex-grow: 0.7;
   background-image: url(../assets/images/Comet-v.png);
 }
 
-.example-container comet:nth-of-type(3) {
+comet:nth-of-type(3) {
   flex-grow: 0.8;
   background-image: url(../assets/images/Comet-y.png);
 }
 
-galaxy {
+comet:nth-of-type(4) {
+  flex-grow: 0.6;
+  background-image: url(../assets/images/Comet-p.png);
+}
+
+galaxy:first-of-type {
+  flex-grow: 3;
+  height: 100%;
   background-image: url(../assets/images/Galaxy-1.png);
-  display: flex;
 }
 
 /* Background animation */
