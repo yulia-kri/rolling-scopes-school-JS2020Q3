@@ -138,20 +138,32 @@ h4 {
   background: var(--color-accent);
 }
 
-.game-wrapper {
+.example-container {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
   column-gap: 1%;
   height: 30rem;
 }
 
-.game-wrapper * {
+.example-container * {
+  height: 50%;
   flex: 1;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  display: none;
+  padding: 0.3em 0.6em;
+  font-size: 1.6rem;
+  color: var(--color-dark-m);
+  background: var(--color-light);
 }
 
 .editor {
@@ -204,11 +216,8 @@ h4 {
   opacity: 1;
 }
 
-.html {
+.panel__html {
   padding: 0.5rem 0 1rem;
-}
-
-.html__markup {
   color: var(--color-light);
   font-size: 1.6rem;
 }
@@ -277,81 +286,82 @@ h4 {
 
 /* Game styles */
 
-.game-wrapper sun {
+.example-container sun {
+  height: 100%;
   flex-grow: 4;
   background-image: url(../assets/images/Sun.png);
 }
 
-.game-wrapper mercury,
-.game-wrapper .mercury,
+.example-container mercury,
+.example-container .mercury,
 planet:nth-of-type(1) {
   flex-grow: 0.5;
   background-image: url(../assets/images/Mercury.png);
 }
 
-.game-wrapper venus,
-.game-wrapper .venus,
+.example-container venus,
+.example-container .venus,
 planet:nth-of-type(2) {
   background-image: url(../assets/images/Venus.png);
 }
 
-.game-wrapper earth,
-.game-wrapper .earth,
+.example-container earth,
+.example-container .earth,
 planet:nth-of-type(3) {
   flex-grow: 1.2;
   background-image: url(../assets/images/Earth.png);
 }
 
-.game-wrapper mars,
-.game-wrapper .mars,
+.example-container mars,
+.example-container .mars,
 planet:nth-of-type(4) {
   flex-grow: 0.8;
   background-image: url(../assets/images/Mars.png);
 }
 
-.game-wrapper jupiter,
-.game-wrapper .jupiter,
+.example-container jupiter,
+.example-container .jupiter,
 planet:nth-of-type(5) {
   flex-grow: 2.2;
   background-image: url(../assets/images/Jupiter.png);
 }
 
-.game-wrapper saturn,
-.game-wrapper .saturn,
+.example-container saturn,
+.example-container .saturn,
 planet:nth-of-type(6) {
   flex-grow: 2.4;
   background-image: url(../assets/images/Saturn.png);
 }
 
-.game-wrapper uranus,
-.game-wrapper .uranus,
+.example-container uranus,
+.example-container .uranus,
 planet:nth-of-type(7) {
   flex-grow: 2;
   background-image: url(../assets/images/Uranus.png);
 }
 
-.game-wrapper neptune,
-.game-wrapper .neptune,
+.example-container neptune,
+.example-container .neptune,
 planet:nth-of-type(8) {
   flex-grow: 1.2;
   background-image: url(../assets/images/Neptune.png);
 }
 
-.game-wrapper moon {
+.example-container moon {
   flex-grow: 0.4;
   background-image: url(../assets/images/Moon.png);
 }
 
-.game-wrapper comet {
+.example-container comet {
   background-image: url(../assets/images/Comet.png);
 }
 
-.game-wrapper comet:nth-of-type(2) {
+.example-container comet:nth-of-type(2) {
   flex-grow: 0.7;
   background-image: url(../assets/images/Comet-v.png);
 }
 
-.game-wrapper comet:nth-of-type(3) {
+.example-container comet:nth-of-type(3) {
   flex-grow: 0.8;
   background-image: url(../assets/images/Comet-y.png);
 }
