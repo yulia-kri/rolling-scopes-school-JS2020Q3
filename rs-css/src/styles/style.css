@@ -8,7 +8,8 @@
 
 :root {
   font-size: 10px;
-  --color-light: #ffffff;
+  --color-light-s: #d1ccdc;
+  --color-light-m: #ffffff;
   --color-dark-s: #4c4c4c;
   --color-dark-m: #252323;
   --color-primary: #001845;
@@ -56,9 +57,9 @@ h4 {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 35rem;
+  right: 34rem;
   left: 0;
-  color: var(--color-light);
+  color: var(--color-light-m);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +74,7 @@ h4 {
   width: 34rem;
   height: 100vh;
   background: var(--color-primary);
-  color: var(--color-light);
+  color: var(--color-light-m);
   padding: 1rem 2rem;
   padding-right: 0;
 }
@@ -133,7 +134,7 @@ h4 {
   outline: none;
   border: none;
   background: var(--color-primary);
-  color: var(--color-light);
+  color: var(--color-light-m);
   border-radius: 20px;
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
@@ -170,7 +171,7 @@ h4 {
   padding: 0.3em 0.6em;
   font-size: 1.6rem;
   color: var(--color-dark-m);
-  background: var(--color-light);
+  background: var(--color-light-m);
 }
 
 .editor {
@@ -185,7 +186,7 @@ h4 {
 }
 
 .css-form {
-  background: var(--color-light);
+  background: var(--color-light-m);
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
@@ -209,7 +210,7 @@ h4 {
   border: none;
   outline: none;
   background: var(--color-accent);
-  color: var(--color-light);
+  color: var(--color-light-m);
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
   letter-spacing: 0.03em;
@@ -225,7 +226,7 @@ h4 {
 
 .panel__html {
   padding: 0.5rem 0 1rem;
-  color: var(--color-light);
+  color: var(--color-light-m);
   font-size: 1.6rem;
 }
 
@@ -267,6 +268,40 @@ h4 {
 
 .menu-btn.open {
   transform: rotate(90deg);
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  column-gap: 5rem;
+  padding: 1rem 0 2rem;
+  font-size: 1.6rem;
+  background: var(--color-primary);
+}
+
+.footer__author,
+.footer__school-link {
+  display: flex;
+  column-gap: 0.5rem;
+  color: var(--color-light-s);
+}
+
+.footer__author-link {
+  color: var(--color-light-s);
+}
+
+.school-link__icon {
+  height: 2rem;
+  filter: invert(95%) brightness(80%) contrast(100%);
+}
+
+.footer__author-link:hover,
+.footer__school-link:hover {
+  color: var(--color-light-m);
 }
 
 @media (max-width: 1020px) {
