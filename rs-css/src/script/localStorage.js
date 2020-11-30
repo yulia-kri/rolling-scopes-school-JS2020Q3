@@ -5,3 +5,11 @@ export function setCurrentLevel(n) {
 export function getCurrentLevel() {
   return localStorage.getItem('currentLevel');
 }
+
+export function setProgress(obj) {
+  localStorage.setItem('progress', JSON.stringify(obj));
+}
+
+export function getProgress() {
+  return JSON.parse(localStorage.getItem('progress'));
+}

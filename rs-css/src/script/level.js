@@ -1,5 +1,10 @@
 import { levels } from './levels.data';
-import { setCurrentLevel, getCurrentLevel } from './localStorage';
+import {
+  setCurrentLevel,
+  getCurrentLevel,
+  setProgress,
+  getProgress,
+} from './localStorage';
 
 const displayTask = document.querySelector('.task');
 const displayExample = document.querySelector('.example-container');
@@ -114,6 +119,14 @@ function levelCompleted(level, selector, isUsingHint) {
   addAnimation(DOMelements, animation);
 
   checkmark.classList.add(isUsingHint ? 'with-hint' : 'completed');
+
+  const progress = getProgress();
+  if (!progress[level]) {
+    progress[level] = { isUsingHint };
+  } else {
+    progress[level].isUsingHint = isUsingHint;
+  }
+  setProgress(progress);
 
   setTimeout(nextLevel, delay);
 }
