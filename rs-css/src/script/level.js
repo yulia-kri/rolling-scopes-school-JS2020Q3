@@ -1,5 +1,5 @@
 import { levels } from './levels.data';
-import { nextLevel } from './index';
+import { setCurrentLevel, getCurrentLevel } from './localStorage';
 
 const displayTask = document.querySelector('.task');
 const displayExample = document.querySelector('.example-container');
@@ -151,4 +151,11 @@ function animateTyping(string, level) {
       setTimeout(typewriter, speed);
     }
   })();
+}
+
+function nextLevel() {
+  let currentLevel = getCurrentLevel();
+  currentLevel++;
+  setCurrentLevel(currentLevel);
+  displayLevel(currentLevel);
 }
