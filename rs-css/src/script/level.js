@@ -54,6 +54,8 @@ export function displayLevel(level) {
 
   const DOMelements = selectAll(content.selectors[0]);
   addAnimation(DOMelements, spinAnimation);
+
+  addActive(level);
 }
 
 export function getHint(level) {
@@ -171,4 +173,10 @@ function nextLevel() {
   currentLevel++;
   setCurrentLevel(currentLevel);
   displayLevel(currentLevel);
+}
+
+function addActive(level) {
+  const levelsElem = document.querySelectorAll('.level-list__level');
+  levelsElem.forEach((elem) => elem.classList.remove('active'));
+  levelsElem[+level].classList.add('active');
 }
