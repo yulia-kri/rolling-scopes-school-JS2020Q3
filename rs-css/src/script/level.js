@@ -122,11 +122,16 @@ function levelCompleted(level, selector, isUsingHint) {
 
   checkmark.classList.add(isUsingHint ? 'with-hint' : 'completed');
 
-  const progress = getProgress();
-  if (!progress[level]) {
+  let progress = {};
+  if (!getProgress()) {
     progress[level] = { isUsingHint };
   } else {
-    progress[level].isUsingHint = isUsingHint;
+    progress = getProgress();
+    if (!progress[level]) {
+      progress[level] = { isUsingHint };
+    } else {
+      progress[level].isUsingHint = isUsingHint;
+    }
   }
   setProgress(progress);
 

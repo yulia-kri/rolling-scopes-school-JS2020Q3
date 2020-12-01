@@ -4,7 +4,7 @@ export default function createLevelsList(list, container) {
   const completedLevels = getProgress();
   list.forEach((level, i) => {
     let completed = '';
-    if (completedLevels[i]) {
+    if (completedLevels && completedLevels[i]) {
       completed = completedLevels[i].isUsingHint ? 'with-hint' : 'completed';
     }
     container.insertAdjacentHTML(
