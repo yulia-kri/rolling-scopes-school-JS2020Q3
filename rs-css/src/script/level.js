@@ -52,14 +52,14 @@ export function displayLevel(level) {
     });
   });
 
-  const DOMelements = selectAll(content.selectors[0]);
+  const DOMelements = selectAll(content.selector);
   addAnimation(DOMelements, spinAnimation);
 
   addActive(level);
 }
 
 export function getHint(level) {
-  const answer = levels[level].selectors[0];
+  const answer = levels[level].selector;
   animateTyping(answer, level);
 }
 
@@ -96,8 +96,19 @@ const selectAll = (selector) =>
   document.querySelector('.example-container').querySelectorAll(selector);
 const select = (selector) => document.querySelector(selector);
 
-const checkAnswer = (level, answer) =>
-  levels[level].selectors.find((selector) => selector === answer);
+function nodeListsAreEqual(list1, list2) {
+  if (list1.length !== list2.length) {
+    return false;
+  }
+  return Array.from(list1).every((node, index) => node === list2[index]);
+}
+
+function checkAnswer(level, answer) {
+  const userSelect = selectAll(answer);
+  const rightSelect = selectAll(levels[level].selector);
+
+  return nodeListsAreEqual(userSelect, rightSelect);
+}
 
 export function submit(e, level) {
   e.preventDefault();

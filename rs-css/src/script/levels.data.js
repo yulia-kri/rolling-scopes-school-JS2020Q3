@@ -2,7 +2,7 @@ export const levels = [
   {
     name: 'Universal Selector',
     task: 'Select all astronomical objects',
-    selectors: ['*'],
+    selector: '*',
     html: `<galaxy></galaxy>
 <comet></comet>
 <sun></sun>
@@ -14,7 +14,7 @@ export const levels = [
   {
     name: 'Type Selector',
     task: 'Select all comets',
-    selectors: ['comet'],
+    selector: 'comet',
     html: `<planet></planet>
 <comet></comet>
 <planet></planet>
@@ -26,7 +26,7 @@ export const levels = [
   {
     name: 'Class Selector',
     task: 'Select all gas giants',
-    selectors: ['.gas-giant'],
+    selector: '.gas-giant',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -39,7 +39,7 @@ export const levels = [
   {
     name: 'Id Selector',
     task: 'Select our home planet',
-    selectors: ['#our-home'],
+    selector: '#our-home',
     html: `<planet></planet>
 <planet></planet>
 <planet id="our-home"></planet>
@@ -52,7 +52,7 @@ export const levels = [
   {
     name: 'General Sibling Selector',
     task: 'Select the planets that follow Jupiter',
-    selectors: ['.jupiter ~ planet'],
+    selector: '.jupiter ~ planet',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -65,7 +65,7 @@ export const levels = [
   {
     name: 'Adjacent Sibling Selector',
     task: 'Select every commet that directly follows a planet',
-    selectors: ['planet + comet'],
+    selector: 'planet + comet',
     html: `<comet></comet>
 <planet></planet>
 <planet></planet>
@@ -79,12 +79,7 @@ export const levels = [
   {
     name: 'First Child Selector',
     task: 'Select the first planet in the Solar System',
-    selectors: [
-      'planet:first-child',
-      'planet:first-of-type',
-      'planet:nth-child(1)',
-      'planet:nth-of-type(1)',
-    ],
+    selector: 'planet:first-child',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -97,12 +92,7 @@ export const levels = [
   {
     name: 'Last Child Selector',
     task: 'Select the last planet in the Solar System',
-    selectors: [
-      'planet:last-child',
-      'planet:last-of-type',
-      'planet:nth-last-child(1)',
-      'planet:nth-last-of-type(1)',
-    ],
+    selector: 'planet:last-child',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -115,12 +105,8 @@ export const levels = [
   {
     name: 'Nth Child Selector',
     task: 'Select the 4th planet in the Solar System',
-    selectors: [
-      'planet:nth-child(4)',
-      'planet:nth-of-type(4)',
-      'planet:nth-last-child(6)',
-      'planet:nth-last-of-type(5)',
-    ],
+    selector: 'planet:nth-child(4)',
+
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -134,12 +120,7 @@ export const levels = [
   {
     name: 'Nth Last Child Selector',
     task: 'Select the 7th planet in the Solar System',
-    selectors: [
-      'planet:nth-last-child(2)',
-      'planet:nth-last-of-type(2)',
-      'planet:nth-child(8)',
-      'planet:nth-of-type(7)',
-    ],
+    selector: 'planet:nth-last-child(2)',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
@@ -153,7 +134,7 @@ export const levels = [
   {
     name: 'First Of Type Selector',
     task: 'Select the first planet from the Sun',
-    selectors: ['planet:first-of-type'],
+    selector: 'planet:first-of-type',
     html: `<sun></sun>
 <planet></planet>
 <planet></planet>
@@ -167,7 +148,7 @@ export const levels = [
   {
     name: 'Last Of Type Selector',
     task: 'Select the last planet in the Solar System',
-    selectors: ['planet:last-of-type'],
+    selector: 'planet:last-of-type',
     html: `<sun></sun>
 <planet></planet>
 <planet></planet>
@@ -182,12 +163,7 @@ export const levels = [
   {
     name: 'Nth Of Type Selector',
     task: 'Select the 2nd planet from the Sun',
-    selectors: [
-      'planet:nth-of-type(2)',
-      'planet:nth-child(4)',
-      'planet:nth-last-of-type(7)',
-      'planet:nth-last-child(7)',
-    ],
+    selector: 'planet:nth-of-type(2)',
     html: `<sun></sun>
 <planet></planet>
 <comet></comet>
@@ -202,12 +178,7 @@ export const levels = [
   {
     name: 'Nth Last Of Type Selector',
     task: 'Select the 7th planet in the Solar System counting from the end',
-    selectors: [
-      'planet:nth-last-of-type(2)',
-      'planet:nth-last-child(3)',
-      'planet:nth-of-type(7)',
-      'planet:nth-child(8)',
-    ],
+    selector: 'planet:nth-last-of-type(2)',
     html: `<sun></sun>
 <planet></planet>
 <planet></planet>
@@ -222,16 +193,7 @@ export const levels = [
   {
     name: 'Only Of Type Selector',
     task: 'Select the only comet',
-    selectors: [
-      'comet:only-of-type',
-      'comet:first-of-type',
-      'comet:last-of-type',
-      'comet:nth-of-type(1)',
-      'comet:nth-last-of-type(1)',
-      'comet:nth-child(4)',
-      'comet:nth-last-child(3)',
-      'comet',
-    ],
+    selector: 'comet:only-of-type',
     html: `<sun></sun>
 <planet></planet>
 <planet></planet>
@@ -242,7 +204,7 @@ export const levels = [
   {
     name: 'Has Attribute Selector',
     task: 'Select the planets that have name attribute',
-    selectors: ['[name]'],
+    selector: '[name]',
     html: `<planet></planet>
 <planet name="Venus"></planet>
 <planet></planet>
@@ -255,13 +217,7 @@ export const levels = [
   {
     name: 'Exact Attribute Selector',
     task: 'Select Venus',
-    selectors: [
-      '[name="Venus"]',
-      'planet:nth-of-type(2)',
-      'planet:nth-child(3)',
-      'planet:nth-last-of-type(7)',
-      'planet:nth-last-child(7)',
-    ],
+    selector: '[name="Venus"]',
     html: `<planet name="Mercury"></planet>
 <planet name="Venus"></planet>
 <planet name="Earth"></planet>
@@ -273,8 +229,8 @@ export const levels = [
   },
   {
     name: 'Substring Attribute Selector',
-    task: 'Select all planets which names contain E anywhere',
-    selectors: ['[name*="e"]'],
+    task: `Select all planets which names contain 'e' anywhere`,
+    selector: '[name*="e"]',
     html: `<planet name="Mercury"></planet>
 <planet name="Venus"></planet>
 <planet name="Earth"></planet>
@@ -286,8 +242,8 @@ export const levels = [
   },
   {
     name: 'Ends With Attribute Selector',
-    task: 'Select all planets which names end with S',
-    selectors: ['[name$="s"]'],
+    task: `Select all planets which names end with 's'`,
+    selector: '[name$="s"]',
     html: `<planet name="Mercury"></planet>
 <planet name="Venus"></planet>
 <planet name="Earth"></planet>
@@ -300,17 +256,7 @@ export const levels = [
   {
     name: 'Not Selector',
     task: 'Select the saddest planet that is no longer a planet',
-    selectors: [
-      '*:not(planet)',
-      'pluto:only-of-type',
-      'pluto:first-of-type',
-      'pluto:last-of-type',
-      'pluto:nth-of-type(1)',
-      'pluto:nth-last-of-type(1)',
-      'pluto:last-child',
-      'plutp:nth-last-child(1)',
-      'pluto',
-    ],
+    selector: '*:not(planet)',
     html: `<planet></planet>
 <planet></planet>
 <planet></planet>
