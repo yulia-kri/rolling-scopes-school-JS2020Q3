@@ -1,5 +1,6 @@
 import { getProgress } from './localStorage';
 import { levels } from './levels.data';
+import { showModal } from './modal';
 
 const levelsList = document.querySelector('.level-list');
 
@@ -19,4 +20,11 @@ export default function createLevelsList() {
         </a>`
     );
   });
+  const resetBtn = document.createElement('buttton');
+  resetBtn.classList.add('reset-btn');
+  resetBtn.innerText = 'Reset Progress';
+
+  levelsList.append(resetBtn);
+
+  resetBtn.addEventListener('click', showModal);
 }

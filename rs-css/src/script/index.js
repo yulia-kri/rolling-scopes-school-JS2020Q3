@@ -3,14 +3,12 @@ import '../styles/style.css';
 import createLevelsList from './levels';
 import { displayLevel, submit, getHint } from './level';
 import { setCurrentLevel, getCurrentLevel } from './localStorage';
-import { showModal } from './modal';
 
 const levelsList = document.querySelector('.level-list');
 const form = document.querySelector('.css-form');
 const menuBtn = document.querySelector('.menu-btn');
 const menu = document.querySelector('.right-col');
 const hint = document.querySelector('.hint');
-const resetBtn = document.querySelector('.reset-btn');
 
 window.addEventListener('DOMContentLoaded', () => {
   createLevelsList();
@@ -35,7 +33,3 @@ menuBtn.addEventListener('click', () => {
 });
 
 hint.addEventListener('click', () => getHint(getCurrentLevel()));
-
-resetBtn.addEventListener('click', showModal);
-
-// localStorage.clear();
