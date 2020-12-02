@@ -1,6 +1,5 @@
 import '../styles/style.css';
 // import './animation';
-import { levels } from './levels.data';
 import createLevelsList from './levels';
 import { displayLevel, submit, getHint } from './level';
 import { setCurrentLevel, getCurrentLevel } from './localStorage';
@@ -14,18 +13,16 @@ const hint = document.querySelector('.hint');
 const resetBtn = document.querySelector('.reset-btn');
 
 window.addEventListener('DOMContentLoaded', () => {
-  if (!getCurrentLevel()) setCurrentLevel(0);
-  let currentLevel = getCurrentLevel();
-  createLevelsList(levels, levelsList);
-  displayLevel(currentLevel);
+  createLevelsList();
+  displayLevel();
 });
 
 levelsList.addEventListener('click', (e) => {
   const levelElem = e.target.closest('.level-list__level');
   if (!levelElem) return;
   const level = levelElem.dataset.level;
-  displayLevel(level);
   setCurrentLevel(level);
+  displayLevel();
 });
 
 form.addEventListener('submit', (e) => {
@@ -40,3 +37,5 @@ menuBtn.addEventListener('click', () => {
 hint.addEventListener('click', () => getHint(getCurrentLevel()));
 
 resetBtn.addEventListener('click', showModal);
+
+// localStorage.clear();

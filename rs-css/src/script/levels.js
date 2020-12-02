@@ -1,13 +1,16 @@
 import { getProgress } from './localStorage';
+import { levels } from './levels.data';
 
-export default function createLevelsList(list, container) {
+const levelsList = document.querySelector('.level-list');
+
+export default function createLevelsList() {
   const completedLevels = getProgress();
-  list.forEach((level, i) => {
+  levels.forEach((level, i) => {
     let completed = '';
     if (completedLevels && completedLevels[i]) {
       completed = completedLevels[i].isUsingHint ? 'with-hint' : 'completed';
     }
-    container.insertAdjacentHTML(
+    levelsList.insertAdjacentHTML(
       'beforeend',
       `<a class="level-list__level" data-level="${i}">
           <span class="level__checkmark ${completed}"></span>

@@ -15,7 +15,9 @@ const shadow = `drop-shadow(5px 5px 16px rgba(255, 255, 255, 0.4))
 drop-shadow(-5px -5px 16px rgba(255, 255, 255, 0.4))`;
 const delay = 700;
 
-export function displayLevel(level) {
+export function displayLevel() {
+  if (!getCurrentLevel()) setCurrentLevel(0);
+  const level = getCurrentLevel();
   const content = levels[level];
   displayTask.innerText = content.task;
   displayExample.innerHTML = content.html;
@@ -104,10 +106,13 @@ function nodeListsAreEqual(list1, list2) {
 }
 
 function checkAnswer(level, answer) {
-  const userSelect = selectAll(answer);
-  const rightSelect = selectAll(levels[level].selector);
-
-  return nodeListsAreEqual(userSelect, rightSelect);
+  try {
+    const userSelect = selectAll(answer);
+    const rightSelect = selectAll(levels[level].selector);
+    return nodeListsAreEqual(userSelect, rightSelect);
+  } catch {
+    wrongAnswer();
+  }
 }
 
 export function submit(e, level) {
@@ -145,8 +150,33 @@ function levelCompleted(level, selector, isUsingHint) {
     }
   }
   setProgress(progress);
+  checkProgress(progress, level);
+}
 
-  setTimeout(nextLevel, delay);
+function checkProgress(progress, currentLevel) {
+  if (progress.length === levels.length) {
+    userWin();
+  } else if (+currentLevel === levels.length - 1) {
+    const completed = Object.keys(progress);
+    const startAtLevel = firstIncompleted(completed);
+    setCurrentLevel(startAtLevel);
+    displayLevel();
+  } else {
+    setTimeout(nextLevel, delay);
+  }
+}
+
+function firstIncompleted(completed) {
+  for (let i = 0; i < levels.length - 1; i++) {
+    if (i !== +completed[i]) {
+      return i;
+    }
+  }
+}
+
+function userWin() {
+  console.log('you win!');
+  // add reset function
 }
 
 function wrongAnswer() {
@@ -188,7 +218,7 @@ function nextLevel() {
   let currentLevel = getCurrentLevel();
   currentLevel++;
   setCurrentLevel(currentLevel);
-  displayLevel(currentLevel);
+  displayLevel();
 }
 
 function addActive(level) {

@@ -1,4 +1,4 @@
-import { setCurrentLevel, getCurrentLevel } from './localStorage';
+import { setCurrentLevel } from './localStorage';
 import { displayLevel } from './level';
 
 export function showModal() {
@@ -11,10 +11,11 @@ export function showModal() {
     if (!e.target.classList.contains('modal__button')) return;
     if (e.target.classList.contains('confirm')) {
       const checkmarks = document.querySelectorAll('.level__checkmark');
+      // add function resetGame()
       localStorage.removeItem('progress');
       checkmarks.forEach((elem) => (elem.className = 'level__checkmark'));
       setCurrentLevel(0);
-      displayLevel(getCurrentLevel());
+      displayLevel();
     }
     modalBg.classList.remove('modal-bg--active');
   });
