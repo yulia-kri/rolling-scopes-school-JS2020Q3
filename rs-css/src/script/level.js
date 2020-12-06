@@ -1,3 +1,5 @@
+import hljs from '../highlight/highlight.pack';
+import '../highlight/styles/shades-of-purple.css';
 import { levels } from './levels.data';
 import {
   setCurrentLevel,
@@ -23,6 +25,10 @@ export function displayLevel() {
   displayExample.innerHTML = content.html;
   displayHTML.innerText = '';
   convertHTML(content.html, displayHTML);
+
+  document.querySelectorAll('.html').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
 
   Array.from(displayExample.children).forEach((elem, i) => {
     elem.addEventListener('mouseenter', (e) => {
@@ -75,20 +81,21 @@ function displayTooltip(elem, markup) {
   tooltipElem.style.display = 'block';
 
   elem.style.filter = shadow;
-  markup.style.color = '#ae0076';
+  markup.classList.add('highlight');
 }
 
 function hideTooltip(elem, markup) {
   tooltipElem.style.display = 'none';
 
   elem.style.filter = '';
-  markup.style.color = '#ffffff';
+  markup.classList.remove('highlight');
 }
 
 function convertHTML(str, container) {
   const arrOfSubstr = str.split('\n');
   arrOfSubstr.forEach((substr) => {
-    const div = document.createElement('div');
+    const div = document.createElement('code');
+    div.classList.add('html');
     div.innerText = substr;
     container.append(div);
   });
