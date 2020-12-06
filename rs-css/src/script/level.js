@@ -66,9 +66,10 @@ export function displayLevel() {
   addActive(level);
 }
 
-export function getHint(level) {
+export function getHint(container) {
+  const level = getCurrentLevel();
   const answer = levels[level].selector;
-  animateTyping(answer, level);
+  animateTyping(answer, level, container);
 }
 
 function displayTooltip(elem, markup) {
@@ -122,12 +123,8 @@ function checkAnswer(level, answer) {
   }
 }
 
-export function submit(e, level) {
-  e.preventDefault();
-
-  const input = e.target.elements[0];
-  const { value } = input;
-  input.value = '';
+export function submit(value) {
+  const level = getCurrentLevel();
 
   checkAnswer(level, value)
     ? levelCompleted(level, value, false)
@@ -198,7 +195,7 @@ function addAnimation(elements, animation) {
   elements.forEach((elem) => (elem.style.animation = animation));
 }
 
-function animateTyping(string, level) {
+function animateTyping(string, level, container) {
   const arrText = new Array(string);
   const speed = 200;
   let index = 0;
@@ -206,13 +203,11 @@ function animateTyping(string, level) {
   let textPos = 0;
 
   (function typewriter() {
-    const input = document.querySelector('.css-form__input');
-
-    input.value = arrText[index].substring(0, textPos) + '|';
+    container.setValue(arrText[index].substring(0, textPos) + '|');
     if (textPos++ == arrLength) {
       textPos = 0;
       setTimeout(() => {
-        input.value = '';
+        container.setValue('');
         levelCompleted(level, string, true);
       }, delay);
     } else {

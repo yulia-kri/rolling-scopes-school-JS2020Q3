@@ -22,11 +22,13 @@
       <div class="editor">
         <div class="editor__panel">
           <h4>CSS Editor</h4>
-          <form class="css-form">
-            <label for="answer">Type in a CSS selector</label>
-            <input type="text" name="answer" class="css-form__input" />
-            <input type="submit" value="Enter" class="css-form__submit" />
-          </form>
+          <div class="css-form">
+            <div>Type in a CSS selector</div>
+            <!--  <input type="text" name="answer" class="css-form__input css" /> -->
+            <textarea class="css-form__input" id="answer"></textarea>
+            <button class="css-form__submit">Enter</button>
+            <!-- <input type="submit" value="Enter" class="css-form__submit" /> -->
+          </div>
         </div>
         <div class="editor__panel">
           <h4>HTML Viewer</h4>
