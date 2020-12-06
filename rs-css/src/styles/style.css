@@ -369,6 +369,7 @@ footer {
 }
 
 .modal {
+  max-width: 80%;
   padding: 2rem;
   background: var(--color-light-m);
 }

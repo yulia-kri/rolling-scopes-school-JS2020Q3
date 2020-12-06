@@ -7,6 +7,7 @@ import {
   setProgress,
   getProgress,
 } from './localStorage';
+import showModal from './modal';
 
 const displayTask = document.querySelector('.task');
 const displayExample = document.querySelector('.example-container');
@@ -158,8 +159,9 @@ function levelCompleted(level, selector, isUsingHint) {
 }
 
 function checkProgress(progress, currentLevel) {
-  if (progress.length === levels.length) {
-    userWin();
+  const numOfCompleted = Object.keys(progress).length;
+  if (numOfCompleted === levels.length) {
+    showModal();
   } else if (+currentLevel === levels.length - 1) {
     const completed = Object.keys(progress);
     const startAtLevel = firstIncompleted(completed);
@@ -176,11 +178,6 @@ function firstIncompleted(completed) {
       return i;
     }
   }
-}
-
-function userWin() {
-  console.log('you win!');
-  // add reset function
 }
 
 function wrongAnswer() {

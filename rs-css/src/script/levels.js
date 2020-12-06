@@ -1,6 +1,6 @@
 import { getProgress } from './localStorage';
 import { levels } from './levels.data';
-import { showModal } from './modal';
+import showModal from './modal';
 
 const levelsList = document.querySelector('.level-list');
 
