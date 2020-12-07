@@ -1,0 +1,1151 @@
+@font-face {
+  font-family: 'Lato';
+  src: url(9919edff6283018571add043109dc20b.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url(122409891594a6f9afc21ac914b5a7d0.ttf) format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+  --color-light-s: #d1ccdc;
+  --color-light-m: #ffffff;
+  --color-dark-s: #4c4c4c;
+  --color-dark-m: #252323;
+  --color-primary: #001845;
+  --color-accent: #ae0076;
+  --color-accent-light: #5158bb;
+}
+
+body {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  filter: contrast(120%);
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+pre {
+  font-family: 'Source Code Pro', monospace;
+}
+
+h2,
+h3,
+h4 {
+  letter-spacing: 0.03em;
+  line-height: 160%;
+}
+
+h2 {
+  font-size: 2.75rem;
+}
+
+h3 {
+  font-size: 2.3rem;
+}
+
+h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.left-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 34rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  padding-bottom: 0;
+  color: var(--color-light-m);
+  overflow-y: scroll;
+}
+
+.right-col {
+  position: absolute;
+  right: 0;
+  width: 34rem;
+  height: 100vh;
+  padding: 1rem 2rem;
+  padding-right: 0;
+  color: var(--color-light-m);
+  background: var(--color-primary);
+}
+
+.level-header {
+  padding-bottom: 1rem;
+}
+
+.reset-btn {
+  align-self: center;
+  padding: 0.8rem 1.5rem;
+  margin: 1rem 2rem;
+  margin-left: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.8rem;
+  color: var(--color-light-m);
+  background: var(--color-accent);
+  border: none;
+  outline: none;
+}
+
+.reset-btn:hover {
+  background: var(--color-accent-light);
+  cursor: pointer;
+}
+
+.level-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 1rem;
+  height: calc(100% - 46px);
+  overflow-y: scroll;
+}
+
+.level-list__level {
+  padding-left: 12px;
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+  line-height: 160%;
+}
+
+.level-list__level:hover {
+  color: var(--color-accent-light);
+  cursor: pointer;
+}
+
+.active {
+  color: var(--color-accent);
+}
+
+.level__checkmark {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  width: 8px;
+  height: 13px;
+  margin-right: 8px;
+  border: solid 3px white;
+  border-width: 0 3px 3px 0;
+  opacity: 0.2;
+  transform: rotate(40deg);
+}
+
+.level__checkmark.completed {
+  border: solid 3px #4cbb4a;
+  border-width: 0 3px 3px 0;
+  opacity: 1.55;
+}
+
+.level__checkmark.with-hint {
+  border: solid 2px #ff9e00;
+  border-width: 0 3px 3px 0;
+  opacity: 1.55;
+}
+
+.menu-btn {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 999;
+  display: none;
+  width: 3rem;
+  height: 2.2rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-btn__burger,
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  width: 3rem;
+  height: 0.2rem;
+  background: var(--color-accent);
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+  position: absolute;
+  content: '';
+}
+
+.menu-btn__burger::before {
+  transform: translateY(-1rem);
+}
+
+.menu-btn__burger::after {
+  transform: translateY(1rem);
+}
+
+.menu-btn.open {
+  transform: rotate(90deg);
+}
+
+.hint {
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-light-m);
+  background: var(--color-primary);
+  border: none;
+  border-radius: 20px;
+  outline: none;
+}
+
+.hint:hover {
+  background: var(--color-accent);
+  cursor: pointer;
+}
+
+.example-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1%;
+}
+
+.example-container * {
+  height: 50%;
+  flex: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.example-container *:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  display: none;
+  padding: 0.3em 0.6em;
+  font-size: 1.6rem;
+  color: var(--color-dark-m);
+  background: var(--color-light-m);
+}
+
+.editor {
+  width: 80%;
+  display: grid;
+  row-gap: 1rem;
+  padding: 1rem;
+  background: var(--color-primary);
+}
+
+@media (max-width: 600px) {
+  .editor {
+    width: 95%;
+  }
+}
+
+.css-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  background: var(--color-light-m);
+}
+
+.css-form__submit {
+  align-self: center;
+  padding: 1rem 2rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  color: var(--color-light-m);
+  background: var(--color-accent);
+  border: none;
+  outline: none;
+}
+
+.css-form__submit:hover {
+  background: var(--color-accent-light);
+  cursor: pointer;
+}
+
+.panel__html {
+  padding-top: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.html:hover {
+  cursor: pointer;
+}
+
+.highlight * {
+  background-color: var(--color-accent);
+}
+
+footer {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  column-gap: 5rem;
+  padding: 2rem 0 1.5rem;
+  font-size: 1.6rem;
+}
+
+.footer__author,
+.footer__school-link {
+  display: flex;
+  column-gap: 0.5rem;
+  color: var(--color-light-s);
+}
+
+.footer__author-link {
+  color: var(--color-light-s);
+}
+
+.school-link__icon {
+  height: 2rem;
+  filter: invert(95%) brightness(80%) contrast(100%);
+}
+
+.footer__author-link:hover,
+.footer__school-link:hover {
+  color: var(--color-light-m);
+}
+
+@media (max-width: 650px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  transition: visibility 0s, opacity 0.7s;
+}
+
+.modal-bg--active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal {
+  max-width: 80%;
+  padding: 2rem;
+  background: var(--color-light-m);
+}
+
+.modal__text {
+  font-size: 2.5rem;
+  letter-spacing: 0.06em;
+  color: var(--color-dark-m);
+}
+
+.modal__buttons {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1rem;
+  margin-top: 4rem;
+}
+
+.modal__button {
+  padding: 0.8rem 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.8rem;
+  color: var(--color-light-m);
+  background: var(--color-dark-s);
+  border: none;
+  outline: none;
+}
+
+.modal__button.confirm {
+  background: var(--color-accent);
+}
+
+.modal__button:hover {
+  background: var(--color-accent-light);
+  cursor: pointer;
+}
+
+@media (max-width: 1020px) {
+  .task {
+    margin-right: 5rem;
+  }
+
+  .left-col {
+    width: 100%;
+  }
+
+  .right-col {
+    z-index: 10;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .right-col.open {
+    transform: translateX(0);
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+}
+
+/* Game styles */
+
+.example-container sun {
+  height: 100%;
+  flex-grow: 3.5;
+  background-image: url(2faea31218d20a8bc2be5f38ebebae6d.png);
+}
+
+planet:nth-of-type(1) {
+  flex-grow: 0.6;
+  background-image: url(9a85f7b7f35c4c069615739145ed78d5.png);
+}
+
+planet:nth-of-type(2) {
+  background-image: url(5cf784339127aa81226804227e1a51b1.png);
+}
+
+planet:nth-of-type(3) {
+  flex-grow: 1.2;
+  background-image: url(fd21886016bedf001f15324a3c21a504.png);
+}
+
+planet:nth-of-type(4) {
+  flex-grow: 0.8;
+  background-image: url(6527ef86ee8288fd84a9c37cd3978e47.png);
+}
+
+planet:nth-of-type(5) {
+  flex-grow: 2.2;
+  background-image: url(2fdd33b23d6f63319309ee89c8e44c2f.png);
+}
+
+planet:nth-of-type(6) {
+  flex-grow: 2.4;
+  background-image: url(4592d867c39b4ac59dd05c0f7737d0f8.png);
+}
+
+planet:nth-of-type(7) {
+  flex-grow: 2;
+  background-image: url(6bf7d6b95c10c5bdb7559a0ac08925af.png);
+}
+
+planet:nth-of-type(8) {
+  flex-grow: 1.2;
+  background-image: url(4d38e197f4a5749c12053b0fb36f4f88.png);
+}
+
+.example-container pluto {
+  flex-grow: 0.6;
+  background-image: url(4ce5fa74ebe54b20aa6a3b18a2f50e60.png);
+}
+
+.example-container moon {
+  flex-grow: 0.4;
+  background-image: url(c25b7caaa2207eee745026a30b962468.png);
+}
+
+comet:first-of-type {
+  background-image: url(7f10d7fc2e9eb98350324e2101a2f7e2.png);
+}
+
+comet:nth-of-type(2) {
+  flex-grow: 0.7;
+  background-image: url(afaae56669a06b02edef48e3ba62270e.png);
+}
+
+comet:nth-of-type(3) {
+  flex-grow: 0.8;
+  background-image: url(7c7d103df888e5e79d90746f4cb7569f.png);
+}
+
+comet:nth-of-type(4) {
+  flex-grow: 0.6;
+  background-image: url(0c0ec242f532f30f82c3956cde9383dc.png);
+}
+
+galaxy:first-of-type {
+  flex-grow: 3;
+  height: 100%;
+  background-image: url(cfec49ef0748f04200831f3a7db12d70.png);
+}
+
+/* Background animation */
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    1600px at 70% 120%,
+    rgba(33, 39, 80, 1) 10%,
+    #020409 100%
+  );
+}
+
+.content {
+  width: inherit;
+  height: inherit;
+}
+
+#universe {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes slide-up {
+  100% {
+    transform: translateY(-1000px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(8px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* BASICS */
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  font-size: 1.6rem;
+  width: 88%;
+  padding-top: 7px;
+  /* height: 300px; */
+  color: black;
+  direction: ltr;
+}
+
+/* PADDING */
+
+.CodeMirror-lines {
+  padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler,
+.CodeMirror-gutter-filler {
+  background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {
+}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
+}
+
+.CodeMirror-guttermarker {
+  color: black;
+}
+.CodeMirror-guttermarker-subtle {
+  color: #999;
+}
+
+/* CURSOR */
+
+.CodeMirror-cursor {
+  border-left: 1px solid black;
+  border-right: none;
+  width: 0;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.cm-fat-cursor .CodeMirror-cursor {
+  width: auto;
+  border: 0 !important;
+  background: #7e7;
+}
+.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+.cm-fat-cursor-mark {
+  background-color: rgba(20, 255, 20, 0.5);
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+}
+.cm-animate-fat-cursor {
+  width: auto;
+  border: 0;
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+  background-color: #7e7;
+}
+@-moz-keyframes blink {
+  0% {
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+  }
+}
+@keyframes blink {
+  0% {
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+  }
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+.CodeMirror-overwrite .CodeMirror-cursor {
+}
+
+.cm-tab {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.CodeMirror-rulers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -50px;
+  bottom: 0;
+  overflow: hidden;
+}
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-header {
+  color: blue;
+}
+.cm-s-default .cm-quote {
+  color: #090;
+}
+.cm-negative {
+  color: #d44;
+}
+.cm-positive {
+  color: #292;
+}
+.cm-header,
+.cm-strong {
+  font-weight: bold;
+}
+.cm-em {
+  font-style: italic;
+}
+.cm-link {
+  text-decoration: underline;
+}
+.cm-strikethrough {
+  text-decoration: line-through;
+}
+
+.cm-s-default .cm-keyword {
+  color: #708;
+}
+.cm-s-default .cm-atom {
+  color: #219;
+}
+.cm-s-default .cm-number {
+  color: #164;
+}
+.cm-s-default .cm-def {
+  color: #00f;
+}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {
+}
+.cm-s-default .cm-variable-2 {
+  color: #05a;
+}
+.cm-s-default .cm-variable-3,
+.cm-s-default .cm-type {
+  color: #085;
+}
+.cm-s-default .cm-comment {
+  color: #a50;
+}
+.cm-s-default .cm-string {
+  color: #a11;
+}
+.cm-s-default .cm-string-2 {
+  color: #f50;
+}
+.cm-s-default .cm-meta {
+  color: #555;
+}
+.cm-s-default .cm-qualifier {
+  color: #555;
+}
+.cm-s-default .cm-builtin {
+  color: #30a;
+}
+.cm-s-default .cm-bracket {
+  color: #997;
+}
+.cm-s-default .cm-tag {
+  color: #170;
+}
+.cm-s-default .cm-attribute {
+  color: #00c;
+}
+.cm-s-default .cm-hr {
+  color: #999;
+}
+.cm-s-default .cm-link {
+  color: #00c;
+}
+
+.cm-s-default .cm-error {
+  color: #f00;
+}
+.cm-invalidchar {
+  color: #f00;
+}
+
+.CodeMirror-composing {
+  border-bottom: 2px solid;
+}
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {
+  color: #0b0;
+}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {
+  color: #a22;
+}
+.CodeMirror-matchingtag {
+  background: rgba(255, 150, 0, 0.3);
+}
+.CodeMirror-activeline-background {
+  background: #e8f2ff;
+}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.CodeMirror-scroll {
+  overflow: scroll !important; /* Things will break if this is overridden */
+  /* 50px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: -50px;
+  margin-right: -50px;
+  padding-bottom: 50px;
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 50px solid transparent;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actual scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar,
+.CodeMirror-hscrollbar,
+.CodeMirror-scrollbar-filler,
+.CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+  outline: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0;
+  left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0;
+  bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0;
+  bottom: 0;
+}
+
+.CodeMirror-gutters {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -50px;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  background: none !important;
+  border: none !important;
+}
+.CodeMirror-gutter-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper ::selection {
+  background-color: transparent;
+}
+.CodeMirror-gutter-wrapper ::-moz-selection {
+  background-color: transparent;
+}
+
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: #696969;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+}
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  padding: 0.1px; /* Force widget margins to stay inside of the container */
+}
+
+.CodeMirror-widget {
+}
+
+.CodeMirror-rtl pre {
+  direction: rtl;
+}
+
+.CodeMirror-code {
+  outline: none;
+}
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.CodeMirror-cursor {
+  position: absolute;
+  pointer-events: none;
+}
+.CodeMirror-measure pre {
+  position: static;
+}
+
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+div.CodeMirror-dragcursors {
+  visibility: visible;
+}
+
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+.CodeMirror-selected {
+  background: #d9d9d9;
+}
+.CodeMirror-focused .CodeMirror-selected {
+  background: #d7d4f0;
+}
+.CodeMirror-crosshair {
+  cursor: crosshair;
+}
+.CodeMirror-line::selection,
+.CodeMirror-line > span::selection,
+.CodeMirror-line > span > span::selection {
+  background: #d7d4f0;
+}
+.CodeMirror-line::-moz-selection,
+.CodeMirror-line > span::-moz-selection,
+.CodeMirror-line > span > span::-moz-selection {
+  background: #d7d4f0;
+}
+
+.cm-searching {
+  background-color: #ffa;
+  background-color: rgba(255, 255, 0, 0.4);
+}
+
+/* Used to force a border model for a node */
+.cm-force-border {
+  padding-right: 0.1px;
+}
+
+@media print {
+  /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after {
+  content: '';
+}
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext {
+  background: none;
+}
+
+/**
+ * Shades of Purple Theme — for Highlightjs.
+ *
+ * @author (c) Ahmad Awais <https://twitter.com/mrahmadawais/>
+ * @link GitHub Repo → https://github.com/ahmadawais/Shades-of-Purple-HighlightJS
+ * @version 1.5.0
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  /* Custom font is optional */
+  /* font-family: 'Operator Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', 'monospace';  */
+  padding: 0.2em;
+  background: #2d2b57;
+  font-weight: normal;
+}
+
+.hljs-title {
+  color: #fad000;
+  font-weight: normal;
+}
+
+.hljs-name {
+  color: #a1feff;
+}
+
+.hljs-tag {
+  color: #ffffff;
+}
+
+.hljs-attr {
+  color: #f8d000;
+  font-style: italic;
+}
+
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-section {
+  color: #fb9e00;
+}
+
+.hljs-keyword {
+  color: #fb9e00;
+}
+
+.hljs,
+.hljs-subst {
+  color: #e3dfff;
+}
+
+.hljs-string,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-code,
+.hljs-regexp,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-template-tag,
+.hljs-quote,
+.hljs-deletion {
+  color: #4cd213;
+}
+
+.hljs-meta,
+.hljs-meta-string {
+  color: #fb9e00;
+}
+
+.hljs-comment {
+  color: #ac65ff;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-name,
+.hljs-strong {
+  font-weight: normal;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #fa658d;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
