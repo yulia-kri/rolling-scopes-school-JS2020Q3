@@ -20,14 +20,6 @@ module.exports = {
       template: 'index.html',
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'src/assets/images'),
-          to: path.resolve(__dirname, 'dist'),
-        },
-      ],
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
