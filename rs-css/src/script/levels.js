@@ -29,5 +29,5 @@ export default function createLevelsList() {
 
   levelsList.append(resetBtn);
 
-  resetBtn.addEventListener('click', showModal);
+  resetBtn.addEventListener('click', () => showModal(false));
 }

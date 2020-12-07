@@ -68,7 +68,6 @@ h4 {
   padding: 2rem;
   padding-bottom: 0;
   color: var(--color-light-m);
-  overflow-y: scroll;
 }
 
 .right-col {
@@ -110,7 +109,12 @@ h4 {
   align-items: flex-start;
   row-gap: 1rem;
   height: calc(100% - 46px);
-  overflow-y: scroll;
+}
+
+@media (max-height: 800px) {
+  .level-list {
+    overflow-y: scroll;
+  }
 }
 
 .level-list__level {
@@ -118,6 +122,11 @@ h4 {
   font-size: 1.8rem;
   letter-spacing: 0.03em;
   line-height: 160%;
+  pointer-events: all;
+}
+
+.disable {
+  pointer-events: none;
 }
 
 .level-list__level:hover {
@@ -212,13 +221,19 @@ h4 {
 }
 
 .example-container {
-  width: 100%;
+  width: 80%;
   height: 40%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   column-gap: 1%;
+}
+
+@media (max-width: 600px) {
+  .example-container {
+    width: 90%;
+  }
 }
 
 .example-container * {
@@ -337,6 +352,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;

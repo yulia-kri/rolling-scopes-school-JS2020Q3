@@ -29,7 +29,7 @@ function resetGame() {
   displayLevel();
 }
 
-export default function showModal(isGameOver = true) {
+export default function showModal(isGameOver) {
   const index = isGameOver ? 1 : 0;
 
   modalBg.classList.add('modal-bg--active');

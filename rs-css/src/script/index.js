@@ -42,7 +42,14 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   hint.addEventListener('click', () => {
+    const levelElements = document.querySelectorAll('.level-list__level');
+
     getHint(editor);
+    hint.disabled = true;
+    levelElements.forEach((element) => {
+      const levelElem = element;
+      levelElem.classList.add('disable');
+    });
   });
 
   levelsList.addEventListener('click', (e) => {

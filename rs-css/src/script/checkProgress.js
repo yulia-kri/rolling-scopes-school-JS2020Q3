@@ -22,7 +22,7 @@ function nextLevel() {
 export default function checkProgress(progress, currentLevel) {
   const numOfCompleted = Object.keys(progress).length;
   if (numOfCompleted === levels.length) {
-    showModal();
+    showModal(true);
   } else if (+currentLevel === levels.length - 1) {
     const completed = Object.keys(progress);
     const startAtLevel = firstIncompleted(completed);
