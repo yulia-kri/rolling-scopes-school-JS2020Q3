@@ -162,7 +162,6 @@ function windowResizeHandler() {
     x: width / 2,
     y: height / 2,
   };
-  console.log(circleCenter, circleRadius);
   canva.setAttribute('width', width);
   canva.setAttribute('height', height);
 }

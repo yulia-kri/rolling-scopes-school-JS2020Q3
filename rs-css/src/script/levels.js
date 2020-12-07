@@ -1,12 +1,13 @@
+/* eslint-disable comma-dangle */
 import { getProgress, getCurrentLevel } from './localStorage';
-import { levels } from './levels.data';
+import levels from './levels.data';
 import showModal from './modal';
 
 const levelsList = document.querySelector('.level-list');
 const currentLevel = document.querySelector('.current-level');
 
 export default function createLevelsList() {
-  currentLevel.innerText = parseInt(+getCurrentLevel() + 1);
+  currentLevel.innerText = parseInt(+getCurrentLevel() + 1, 10);
   const completedLevels = getProgress();
   levels.forEach((level, i) => {
     let completed = '';
@@ -19,7 +20,7 @@ export default function createLevelsList() {
           <span class="level__checkmark ${completed}"></span>
           <span class="level__number">${i + 1}</span>
           ${level.name}
-        </a>`
+      </a>`
     );
   });
   const resetBtn = document.createElement('buttton');

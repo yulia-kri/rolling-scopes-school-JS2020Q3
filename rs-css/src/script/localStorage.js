@@ -3,7 +3,7 @@ export function setCurrentLevel(n) {
 }
 
 export function getCurrentLevel() {
-  return localStorage.getItem('currentLevel');
+  return Number(localStorage.getItem('currentLevel'));
 }
 
 export function setProgress(obj) {

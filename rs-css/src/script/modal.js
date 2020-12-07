@@ -1,5 +1,5 @@
 import { setCurrentLevel } from './localStorage';
-import { displayLevel } from './level';
+import displayLevel from './level';
 
 const modalBg = document.querySelector('.modal-bg');
 const modalMessage = document.querySelector('.modal__text');
@@ -14,9 +14,20 @@ const modal = [
   {
     message:
       'Congratulations! Now you rock at CSS selectors. And at planets in the Solar System, I hope.',
-    buttons: `<button class="modal__button confirm">Start new game</button>`,
+    buttons: '<button class="modal__button confirm">Start new game</button>',
   },
 ];
+
+function resetGame() {
+  const checkmarks = document.querySelectorAll('.level__checkmark');
+  localStorage.removeItem('progress');
+  checkmarks.forEach((checkmark) => {
+    const elem = checkmark;
+    elem.className = 'level__checkmark';
+  });
+  setCurrentLevel(0);
+  displayLevel();
+}
 
 export default function showModal(isGameOver = true) {
   const index = isGameOver ? 1 : 0;
@@ -34,12 +45,4 @@ export default function showModal(isGameOver = true) {
     }
     modalBg.classList.remove('modal-bg--active');
   });
-}
-
-function resetGame() {
-  const checkmarks = document.querySelectorAll('.level__checkmark');
-  localStorage.removeItem('progress');
-  checkmarks.forEach((elem) => (elem.className = 'level__checkmark'));
-  setCurrentLevel(0);
-  displayLevel();
 }

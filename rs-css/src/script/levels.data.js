@@ -1,4 +1,4 @@
-export const levels = [
+export default [
   {
     name: 'Universal Selector',
     task: 'Select all astronomical objects',
@@ -229,7 +229,7 @@ export const levels = [
   },
   {
     name: 'Substring Attribute Selector',
-    task: `Select all planets which names contain 'e' anywhere`,
+    task: 'Select all planets which names contain "e" anywhere',
     selector: '[name*="e"]',
     html: `<planet name="Mercury"></planet>
 <planet name="Venus"></planet>
@@ -242,7 +242,7 @@ export const levels = [
   },
   {
     name: 'Ends With Attribute Selector',
-    task: `Select all planets which names end with 's'`,
+    task: 'Select all planets which names end with "s"',
     selector: '[name$="s"]',
     html: `<planet name="Mercury"></planet>
 <planet name="Venus"></planet>
