@@ -2,6 +2,7 @@ import '../styles/style.css';
 import CodeMirror from '../codemirror/lib/codemirror';
 import '../codemirror/lib/codemirror.css';
 import '../codemirror/mode/css/css';
+import '../codemirror/addon/display/placeholder';
 // import './animation';
 import createLevelsList from './levels';
 import { displayLevel, submit, getHint } from './level';
@@ -38,17 +39,19 @@ window.addEventListener('DOMContentLoaded', () => {
   hint.addEventListener('click', () => {
     getHint(editor);
   });
-});
 
-levelsList.addEventListener('click', (e) => {
-  const levelElem = e.target.closest('.level-list__level');
-  if (!levelElem) return;
-  const level = levelElem.dataset.level;
-  setCurrentLevel(level);
-  displayLevel();
-});
+  levelsList.addEventListener('click', (e) => {
+    const levelElem = e.target.closest('.level-list__level');
+    if (!levelElem) return;
+    const level = levelElem.dataset.level;
+    setCurrentLevel(level);
+    displayLevel();
+    menuBtn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
 
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('open');
-  menu.classList.toggle('open');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
 });

@@ -9,6 +9,7 @@ import {
 } from './localStorage';
 import showModal from './modal';
 
+const displayCurrentLevel = document.querySelector('.current-level');
 const displayTask = document.querySelector('.task');
 const displayExample = document.querySelector('.example-container');
 const displayHTML = document.querySelector('.panel__html');
@@ -22,6 +23,7 @@ export function displayLevel() {
   if (!getCurrentLevel()) setCurrentLevel(0);
   const level = getCurrentLevel();
   const content = levels[level];
+  displayCurrentLevel.innerText = parseInt(+level + 1);
   displayTask.innerText = content.task;
   displayExample.innerHTML = content.html;
   displayHTML.innerText = '';

@@ -1,10 +1,12 @@
-import { getProgress } from './localStorage';
+import { getProgress, getCurrentLevel } from './localStorage';
 import { levels } from './levels.data';
 import showModal from './modal';
 
 const levelsList = document.querySelector('.level-list');
+const currentLevel = document.querySelector('.current-level');
 
 export default function createLevelsList() {
+  currentLevel.innerText = parseInt(+getCurrentLevel() + 1);
   const completedLevels = getProgress();
   levels.forEach((level, i) => {
     let completed = '';
