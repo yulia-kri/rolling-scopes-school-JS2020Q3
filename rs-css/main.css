@@ -34,6 +34,12 @@ body {
   filter: contrast(120%);
 }
 
+@media (max-width: 1020px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 a {
   display: block;
   text-decoration: none;
@@ -1164,4 +1170,3 @@ span.CodeMirror-selectedtext {
 .hljs-strong {
   font-weight: bold;
 }
-
