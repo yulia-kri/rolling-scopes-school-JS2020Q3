@@ -1,7 +1,5 @@
 export function selectAll(selector) {
-  return document
-    .querySelector('.example-container')
-    .querySelectorAll(selector);
+  return document.querySelector('.example-container').querySelectorAll(selector);
 }
 
 export function select(selector) {

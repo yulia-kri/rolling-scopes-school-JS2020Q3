@@ -13,19 +13,19 @@ function firstIncompleted(completed) {
 }
 
 function nextLevel() {
-  let currentLevel = getCurrentLevel();
-  currentLevel++;
-  setCurrentLevel(currentLevel);
+  setCurrentLevel(getCurrentLevel() + 1);
   displayLevel();
 }
 
 export default function checkProgress(progress, currentLevel) {
   const numOfCompleted = Object.keys(progress).length;
+
   if (numOfCompleted === levels.length) {
     showModal(true);
   } else if (+currentLevel === levels.length - 1) {
     const completed = Object.keys(progress);
     const startAtLevel = firstIncompleted(completed);
+
     setCurrentLevel(startAtLevel);
     displayLevel();
   } else {

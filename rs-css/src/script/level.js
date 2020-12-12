@@ -30,6 +30,7 @@ function makeActive(level) {
 
 export default function displayLevel() {
   if (!getCurrentLevel()) setCurrentLevel(0);
+
   const level = getCurrentLevel();
   const content = levels[level];
 

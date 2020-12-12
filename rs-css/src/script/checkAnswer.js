@@ -14,6 +14,7 @@ export function levelCompleted(level, selector, isUsingHint) {
   checkmark.classList.add(isUsingHint ? 'with-hint' : 'completed');
 
   let progress = {};
+
   if (!getProgress()) {
     progress[level] = { isUsingHint };
   } else {
@@ -24,6 +25,7 @@ export function levelCompleted(level, selector, isUsingHint) {
       progress[level].isUsingHint = isUsingHint;
     }
   }
+
   setProgress(progress);
   checkProgress(progress, level);
 }
@@ -37,9 +39,7 @@ function wrongAnswer() {
 }
 
 function nodeListsAreEqual(list1, list2) {
-  if (list1.length !== list2.length) {
-    return false;
-  }
+  if (list1.length !== list2.length) return false;
   return Array.from(list1).every((node, index) => node === list2[index]);
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 import '../styles/style.css';
 import CodeMirror from '../codemirror/lib/codemirror';
 import '../codemirror/lib/codemirror.css';
@@ -32,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
           editor.setValue('');
         },
       },
-    }
+    },
   );
 
   submitBtn.addEventListener('click', () => {

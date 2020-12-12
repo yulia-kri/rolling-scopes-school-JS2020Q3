@@ -13,6 +13,7 @@ function animateTyping(string, level, container) {
 
   function typewriter() {
     container.setValue(`${arrText[index].substring(0, textPos)}|`);
+
     if (textPos++ === arrLength) {
       textPos = 0;
       setTimeout(() => {

@@ -20,11 +20,14 @@ const modal = [
 
 function resetGame() {
   const checkmarks = document.querySelectorAll('.level__checkmark');
+
   localStorage.removeItem('progress');
+
   checkmarks.forEach((checkmark) => {
     const elem = checkmark;
     elem.className = 'level__checkmark';
   });
+
   setCurrentLevel(0);
   displayLevel();
 }

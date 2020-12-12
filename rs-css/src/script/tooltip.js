@@ -6,6 +6,7 @@ export function showTooltip(elem, markup) {
   const top = elem.offsetTop - 20;
   const left = elem.offsetLeft + elem.offsetWidth / 2;
   const tooltipText = markup.innerText;
+
   tooltipElem.innerText = tooltipText;
   tooltipElem.style.top = `${top}px`;
   tooltipElem.style.left = `${left}px`;
