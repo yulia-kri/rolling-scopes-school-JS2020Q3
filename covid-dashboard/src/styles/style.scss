@@ -1,0 +1,108 @@
+@import './preload';
+@import './fonts';
+@import './variables';
+@import './fullscreen';
+@import './leftCol';
+@import './centerCol';
+@import './rightCol';
+@import './keyboard';
+@import './virus';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+}
+
+body {
+  @include flex-col;
+  justify-content: space-between;
+  row-gap: 0;
+  width: 100%;
+  background: $colorPrimary;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem 0;
+  background: $colorPrimary;
+
+  h1 {
+    @include header1();
+    text-transform: uppercase;
+  }
+
+  span {
+    @include header4();
+  }
+}
+
+main {
+  display: flex;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  column-gap: 5rem;
+  font-size: 1.6rem;
+  background: $colorPrimary-m;
+}
+
+.footer__author,
+.footer__school-link {
+  display: flex;
+  column-gap: 0.5rem;
+  color: $colorLight-s;
+}
+
+.footer__author-link {
+  color: $colorLight-s;
+}
+
+.school-link__icon {
+  width: 60px;
+}
+
+.footer__author-link:hover,
+.footer__school-link:hover {
+  color: $colorLight-s;
+}
+
+@media (max-width: 650px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  main {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .left-col {
+    order: 1;
+    width: 40%;
+    height: 62rem;
+  }
+
+  .right-col {
+    order: 2;
+    width: 30%;
+  }
+
+  .center-col {
+    order: 3;
+    width: 90%;
+    height: 80vw;
+    min-height: 76rem;
+  }
+}
